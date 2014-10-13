@@ -1,0 +1,6 @@
+services:
+    sosvelo_user.registration.form.type:
+        class: SOSVelo\Bundle\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+        - { name: form.type, alias: sosvelo_user_registration }

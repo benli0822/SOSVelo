@@ -1,0 +1,12 @@
+{% extends "SOSVeloTemplateBundle:Template:index.html.twig" %}
+    {% block body %}
+        <form action="{{ path('sosvelo_add_point') }}" method="post" {{ form_enctype(form) }} id="point">
+            <h1>Ajouter un point</h1>
+            <fieldset id="inputs">
+            {{ form_widget(form) }}
+            </fieldset>
+            <fieldset id="actions">
+                <input type="submit" value="Enregistrer" id="submit"/>
+            </fieldset>
+        </form>
+    {% endblock %}
