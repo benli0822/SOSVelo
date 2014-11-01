@@ -22,7 +22,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "friendsofsymfony/comment-bundle": "~2.0",
         "doctrine/doctrine-fixtures-bundle" : "dev-master",
-        "doctrine/data-fixtures": "1.0.*@ALPHA"
+        "doctrine/data-fixtures": "1.0.*@ALPHA",
+        "nelmio/api-doc-bundle": "~2.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

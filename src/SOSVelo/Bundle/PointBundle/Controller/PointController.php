@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Point controller that handle the CRUD
@@ -26,6 +27,7 @@ class PointController extends Controller {
     /**
      * Add_point with form
      *
+     * @Apidoc()
      * @Route("/add_point")
      */
     public function add_pointAction() {
@@ -55,6 +57,7 @@ class PointController extends Controller {
     /**
      * Create an point with json
      *
+     * @Apidoc()
      * @Route("/points")
      * @Method({"POST"})
      */
@@ -96,6 +99,7 @@ class PointController extends Controller {
     /**
      * Get all points
      *
+     * @Apidoc()
      * @Route("/points")
      * @Method({"GET"})
      */
@@ -118,6 +122,7 @@ class PointController extends Controller {
     /**
      * Get all points
      *
+     * @Apidoc()
      * @Route("/geojson/points")
      * @Method({"GET"})
      */
@@ -167,6 +172,7 @@ class PointController extends Controller {
     /**
      * Get the point with the id
      *
+     * @Apidoc()
      * @Route("/points/{id}", requirements={"id" = "\d+"})
      * @Method({"GET"})
      */
@@ -194,6 +200,7 @@ class PointController extends Controller {
     /**
      * activate the point
      *
+     * @Apidoc()
      * @Route("/points/activate/{id}", requirements={"id" = "\d+"})
      * @Method({"POST"})
      */
@@ -223,6 +230,7 @@ class PointController extends Controller {
     /**
      * Get the comments of the point with the id
      *
+     * @Apidoc()
      * @Route("/points/{id}/comments", requirements={"id" = "\d+"})
      * @Method({"GET"})
      */
@@ -250,6 +258,7 @@ class PointController extends Controller {
     /**
      * Delete an point
      *
+     * @Apidoc()
      * @Route("/points/{id}", requirements={"id" = "\d+"})
      * @Method({"DELETE"})
      */
@@ -278,6 +287,7 @@ class PointController extends Controller {
     /**
      * Update an point
      *
+     * @Apidoc()
      * @Route("/points/{id}", requirements={"id" = "\d+"})
      * @Method({"PUT"})
      */

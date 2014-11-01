@@ -11,6 +11,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Comment controller that handle the CRUD
@@ -25,6 +26,7 @@ class CommentController extends Controller {
     /**
      * Get all comments
      *
+     * @ApiDoc()
      * @Route("/comments")
      * @Method({"GET"})
      */
@@ -52,6 +54,7 @@ class CommentController extends Controller {
     /**
      * Get the comment with the id
      *
+     * @Apidoc()
      * @Route("/comments/{id}", requirements={"id" = "\d+"})
      * @Method({"GET"})
      */
@@ -89,6 +92,7 @@ class CommentController extends Controller {
     /**
      * Delete an comment
      *
+     * @Apidoc()
      * @Route("/comments/{id}", requirements={"id" = "\d+"})
      * @Method({"DELETE"})
      */
@@ -117,6 +121,7 @@ class CommentController extends Controller {
     /**
      * Update an comment
      *
+     * @Apidoc()
      * @Route("/comments/{id}", requirements={"id" = "\d+"})
      * @Method({"PUT"})
      */
@@ -162,6 +167,7 @@ class CommentController extends Controller {
     /**
      * Create an comment
      *
+     * @Apidoc()
      * @Route("/comments")
      * @Method({"POST"})
      */

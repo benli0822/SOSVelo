@@ -66,6 +66,8 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
+nelmio_api_doc: ~
+
 fos_user:
     db_driver: orm
     firewall_name: main

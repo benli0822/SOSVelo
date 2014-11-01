@@ -5,10 +5,12 @@ namespace SOSVelo\Bundle\TemplateBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class TemplateController extends Controller
 {
     /**
+     * @Apidoc()
      * @Route("/home")
      * @Template()
      */

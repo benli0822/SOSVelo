@@ -11,6 +11,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * User controller that handle the CRUD
@@ -25,6 +26,7 @@ class UserController extends Controller {
     /**
      * Get all users
      *
+     * @Apidoc()
      * @Route("/users")
      * @Method({"GET"})
      */
@@ -51,6 +53,7 @@ class UserController extends Controller {
     /**
      * Get the user with the id
      *
+     * @Apidoc()
      * @Route("/users/{id}", requirements={"id" = "\d+"})
      * @Method({"GET"})
      */
@@ -83,6 +86,7 @@ class UserController extends Controller {
     /**
      * Delete an user
      *
+     * @Apidoc()
      * @Route("/users/{id}", requirements={"id" = "\d+"})
      * @Method({"DELETE"})
      */
@@ -111,6 +115,7 @@ class UserController extends Controller {
     /**
      * Update an user
      *
+     * @Apidoc()
      * @Route("/users/{id}", requirements={"id" = "\d+"})
      * @Method({"PUT"})
      */
@@ -156,6 +161,7 @@ class UserController extends Controller {
     /**
      * Create an user
      *
+     * @Apidoc()
      * @Route("/users")
      * @Method({"POST"})
      */

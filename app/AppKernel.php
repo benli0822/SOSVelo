@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new SOSVelo\Bundle\CommentBundle\SOSVeloCommentBundle(),
             new SOSVelo\Bundle\PointBundle\SOSVeloPointBundle(),
             new SOSVelo\Bundle\TemplateBundle\SOSVeloTemplateBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
