@@ -53,9 +53,19 @@
         <text>Infromation%20plus%20consice</text>
       </controlProperties>
     </control>
-    <control controlID="23" controlTypeID="com.balsamiq.mockups::Button" x="1080" y="525" w="-1" h="-1" measuredW="112" measuredH="27" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::Button" x="1036" y="525" w="-1" h="-1" measuredW="119" measuredH="27" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Aller%20%E0%20ce%20point</text>
+        <text>affichier%20parcour</text>
+      </controlProperties>
+    </control>
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::Button" x="1163" y="525" w="-1" h="-1" measuredW="62" measuredH="27" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>depart</text>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Button" x="1037" y="260" w="-1" h="-1" measuredW="98" measuredH="27" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>devenir%20ami%3F</text>
       </controlProperties>
     </control>
   </controls>
