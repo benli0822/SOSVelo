@@ -73,6 +73,11 @@ class Point
      */
     private $activated;
 
+    /**@TODO change the relation
+     * @ORM\ManyToMany(targetEntity="SOSVelo\Bundle\PointBundle\Entity\Point", cascade={"persist"})
+     */
+    private $comments;
+
     /**
      * Get id
      *
