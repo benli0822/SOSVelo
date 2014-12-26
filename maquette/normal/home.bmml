@@ -54,13 +54,13 @@
         <text>Sign%20up</text>
       </controlProperties>
     </control>
-    <control controlID="18" controlTypeID="com.balsamiq.mockups::SearchBox" x="402" y="167" w="396" h="-1" measuredW="120" measuredH="25" zOrder="14" locked="false" isInGroup="-1"/>
-    <control controlID="19" controlTypeID="com.balsamiq.mockups::ComboBox" x="813" y="167" w="-1" h="-1" measuredW="76" measuredH="24" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::SearchBox" x="276" y="167" w="396" h="-1" measuredW="120" measuredH="25" zOrder="14" locked="false" isInGroup="-1"/>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::ComboBox" x="695" y="167" w="-1" h="-1" measuredW="76" measuredH="24" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Service</text>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::Button" x="902" y="167" w="-1" h="-1" measuredW="89" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::Button" x="925" y="166" w="-1" h="-1" measuredW="89" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Rechercher</text>
       </controlProperties>
@@ -110,6 +110,11 @@
     <control controlID="30" controlTypeID="com.balsamiq.mockups::Label" x="1036" y="467" w="-1" h="-1" measuredW="66" measuredH="21" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Information</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::ComboBox" x="792" y="167" w="-1" h="-1" measuredW="118" measuredH="24" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>affichier%20prive%3F</text>
       </controlProperties>
     </control>
   </controls>
