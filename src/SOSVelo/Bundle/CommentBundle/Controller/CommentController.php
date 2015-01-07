@@ -21,7 +21,8 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
  * Class CommentController
  * @package SOSVelo\Bundle\CommentBundle\Controller
  */
-class CommentController extends Controller {
+class CommentController extends Controller
+{
 
     /**
      * Get all comments
@@ -29,8 +30,10 @@ class CommentController extends Controller {
      * @ApiDoc()
      * @Route("/comments")
      * @Method({"GET"})
+     * @return Response
      */
-    public function getCommentsAction() {
+    public function getCommentsAction()
+    {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new GetSetMethodNormalizer());
 
@@ -38,10 +41,11 @@ class CommentController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $query = $em->createQuery(
-                        //'SELECT c.id, c.thread_id, c.author_id, c.body, c.ancestors, c.depth, c.created_at, c.state, c.score
-                        'SELECT c.id, c.body, c.ancestors, c.depth, c.state, c.score
+        //'SELECT c.id, c.thread_id, c.author_id, c.body, c.ancestors, c.depth, c.created_at, c.state, c.score
+            'SELECT c.id, c.body, c.ancestors, c.depth, c.state, c.score
                         FROM SOSVeloCommentBundle:Comment c
-                        ORDER BY c.id ASC');
+                        ORDER BY c.id ASC'
+        );
 
         $comments = $query->getResult();
 
@@ -54,11 +58,14 @@ class CommentController extends Controller {
     /**
      * Get the comment with the id
      *
+     * @param int $id id
      * @Apidoc()
      * @Route("/comments/{id}", requirements={"id" = "\d+"})
      * @Method({"GET"})
+     * @return Response
      */
-    public function getCommentAction($id) {
+    public function getCommentAction($id)
+    {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new GetSetMethodNormalizer());
 
@@ -67,7 +74,7 @@ class CommentController extends Controller {
         $comment = $this->getDoctrine()
             ->getRepository('SOSVeloCommentBundle:Comment')
             ->find($id);
-        
+
 //        $em = $this->getDoctrine()->getEntityManager();
 //        $query = $em->createQuery(
 //                        //'SELECT c.id, c.thread_id, c.author_id, c.body, c.ancestors, c.depth, c.created_at, c.state, c.score
@@ -80,7 +87,7 @@ class CommentController extends Controller {
 
         $response = new Response($serializer->serialize(array("comment" => $comment), 'json'));
         $response->headers->set('Content-Type', 'application/json');
-        
+
         // If comment not found
         if (sizeof($comment) == 0) {
             $response->setStatusCode(404);
@@ -96,16 +103,17 @@ class CommentController extends Controller {
      * @Route("/comments/{id}", requirements={"id" = "\d+"})
      * @Method({"DELETE"})
      */
-    public function deleteCommentAction($id) {
+    public function deleteCommentAction($id)
+    {
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
 
         $comment = $this->getDoctrine()
-                ->getRepository('SOSVeloCommentBundle:Comment')
-                ->find($id);
+            ->getRepository('SOSVeloCommentBundle:Comment')
+            ->find($id);
 
         // If comment not found
-        if (sizeof($comment) == 0){
+        if (sizeof($comment) == 0) {
             $response->setStatusCode(404);
         } else {
             $em = $this->getDoctrine()->getEntityManager();
@@ -125,7 +133,8 @@ class CommentController extends Controller {
      * @Route("/comments/{id}", requirements={"id" = "\d+"})
      * @Method({"PUT"})
      */
-    public function updateCommentAction($id) {
+    public function updateCommentAction($id)
+    {
         //Preparing the response
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
@@ -138,11 +147,11 @@ class CommentController extends Controller {
             $data = json_decode($request->getContent(), true);
 
             $comment = $this->getDoctrine()
-                    ->getRepository('SOSVeloCommentBundle:Comment')
-                    ->find($id);
+                ->getRepository('SOSVeloCommentBundle:Comment')
+                ->find($id);
 
             // If comment not found
-            if (sizeof($comment) == 0){
+            if (sizeof($comment) == 0) {
                 $response->setStatusCode(404);
             } else {
                 // Creating the entity
@@ -171,7 +180,8 @@ class CommentController extends Controller {
      * @Route("/comments")
      * @Method({"POST"})
      */
-    public function newCommentAction() {
+    public function newCommentAction()
+    {
         // Preparing the response
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');
