@@ -249,27 +249,4 @@ class Point
         return $this->activated;
     }
     
-
-    /**
-     * Set comments
-     *
-     * @param \SOSVelo\Bundle\PointBundle\Entity\Point $comments
-     * @return Point
-     */
-    public function setComments(\SOSVelo\Bundle\PointBundle\Entity\Point $comments = null)
-    {
-        $this->comments = $comments;
-
-        return $this;
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \SOSVelo\Bundle\PointBundle\Entity\Point 
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
 }

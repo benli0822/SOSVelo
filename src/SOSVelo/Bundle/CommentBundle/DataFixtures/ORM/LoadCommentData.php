@@ -13,7 +13,7 @@ class LoadCommentData implements FixtureInterface {
      */
     public function load(ObjectManager $manager) {
 
-        $comment1 = new Comment();
+       // $comment1 = new Comment();
 
     }
 

@@ -36,7 +36,8 @@ class PointComment
     private $date;
 
     /**
-     * @ORM\OneToOne(targetEntity="SOSVelo\Bundle\PointBundle\Entity\Point", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="SOSVelo\Bundle\PointBundle\Entity\Point", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $point;
     /**
