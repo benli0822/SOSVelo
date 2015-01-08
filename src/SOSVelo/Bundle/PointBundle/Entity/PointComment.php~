@@ -1,0 +1,98 @@
+<?php
+
+namespace SOSVelo\Bundle\PointBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PointComment
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="SOSVelo\Bundle\PointBundle\Entity\PointCommentRepository")
+ */
+class PointComment
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SOSVelo\Bundle\PointBundle\Entity\Point", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $point;
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return PointComment
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return PointComment
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+}

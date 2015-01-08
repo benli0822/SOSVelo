@@ -12,6 +12,9 @@ class LoadCommentData implements FixtureInterface {
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager) {
+
+       // $comment1 = new Comment();
+
     }
 
 }
