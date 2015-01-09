@@ -18,4 +18,14 @@ class TemplateController extends Controller
     {
         return $this->render('SOSVeloTemplateBundle:Template:index.html.twig');
     }
+
+    /**
+     * @Apidoc()
+     * @Route("/contact")
+     * @Template()
+     */
+    public function contactAction()
+    {
+        return $this->render('SOSVeloTemplateBundle:Template:contact.html.twig');
+    }
 }
