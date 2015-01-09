@@ -71,3 +71,21 @@ sosvelo_uc_friend:
     defaults: { _controller: SOSVeloTemplateBundle:Template:friend }
     requirements:
         _method: GET|POST
+
+sosvelo_uc_comment:
+    path: /comment
+    defaults: { _controller: SOSVeloTemplateBundle:Template:comment }
+    requirements:
+        _method: GET|POST
+
+sosvelo_uc_usercontact:
+    path: /usercontact
+    defaults: { _controller: SOSVeloTemplateBundle:Template:usercontact }
+    requirements:
+        _method: GET|POST
+
+sosvelo_uc_message:
+    path: /message
+    defaults: { _controller: SOSVeloTemplateBundle:Template:message }
+    requirements:
+        _method: GET|POST

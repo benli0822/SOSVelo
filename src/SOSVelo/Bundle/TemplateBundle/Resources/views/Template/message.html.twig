@@ -1,0 +1,112 @@
+{# SOSVelo/Bundle/TemplateBundle/Resources/views/Template/message.html.twig #}
+
+{% extends '@SOSVeloTemplate/layout_uc.html.twig' %}
+
+{% block title %}Your messages {#TODO username#} {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/jquery.modal.css' output='chosen.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"></link>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+    <div class="9u -1u 12u$(2)">
+        <h3>Messages box</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Poster</th>
+                    <th>Operations</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Item 1</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                    <td><a class="button small alt special" href="#ex1" rel="modal:open">Respond</a></td>
+                </tr>
+                <tr>
+                    <td>Item 2</td>
+                    <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                    <td>19.99</td>
+                    <td><a class="button small alt special" href="#ex1" rel="modal:open">Respond</a></td>
+                </tr>
+                <tr>
+                    <td>Item 3</td>
+                    <td> Morbi faucibus arcu accumsan lorem.</td>
+                    <td>29.99</td>
+                    <td><a class="button small alt special" href="#ex1" rel="modal:open">Respond</a></td>
+                </tr>
+                <tr>
+                    <td>Item 4</td>
+                    <td>Vitae integer tempus condimentum.</td>
+                    <td>19.99</td>
+                    <td><a class="button small alt special" href="#ex1" rel="modal:open">Respond</a></td>
+                </tr>
+                <tr>
+                    <td>Item 5</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                    <td><a class="button small alt special" href="#ex1" rel="modal:open">Respond</a></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <!--<tr>-->
+                <!--<td colspan="2"></td>-->
+                <!--<td>100.00</td>-->
+                <!--</tr>-->
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal HTML embedded directly into document -->
+    <div id="ex1" style="display:none;">
+        <h3>Respond to your messages</h3>
+
+        <form method="post" action="#">
+            <div class="row uniform 50%">
+                <div class="6u 12u(3)">
+                    <input type="text" name="name" id="name" value="" placeholder="Name" />
+                </div>
+                <div class="6u 12u(3)">
+                    <input type="email" name="email" id="email" value="" placeholder="Email" />
+                </div>
+            </div>
+            <div class="row uniform 50%">
+                <div class="12u">
+                    <input type="text" name="subject" id="subject" value="" placeholder="Subject" />
+                </div>
+            </div>
+            <div class="row uniform 50%">
+                <div class="12u">
+                    <textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
+                </div>
+            </div>
+            <div class="row uniform">
+                <div class="12u">
+                    <ul class="actions align-center">
+                        <li><input type="submit" value="Send Message" /></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% javascripts '@SOSVeloTemplateBundle/Resources/public/js/jquery.modal.min.js' output='js/chosen.jquery.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}

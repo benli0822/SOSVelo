@@ -98,4 +98,24 @@ class TemplateController extends Controller
     {
         return $this->render('SOSVeloTemplateBundle:Template:comment.html.twig');
     }
+
+    /**
+     * @Apidoc()
+     * @Route("/usercontact")
+     * @Template()
+     */
+    public function usercontactAction()
+    {
+        return $this->render('SOSVeloTemplateBundle:Template:usercontact.html.twig');
+    }
+
+    /**
+     * @Apidoc()
+     * @Route("/message")
+     * @Template()
+     */
+    public function messageAction()
+    {
+        return $this->render('SOSVeloTemplateBundle:Template:message.html.twig');
+    }
 }

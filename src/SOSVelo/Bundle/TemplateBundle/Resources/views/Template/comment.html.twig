@@ -1,0 +1,62 @@
+{# SOSVelo/Bundle/TemplateBundle/Resources/views/Template/comment.html.twig #}
+
+{% extends '@SOSVeloTemplate/layout_uc.html.twig' %}
+
+{% block title %}Your comments{#TODO username#} {% endblock %}
+
+{% block content %}
+    <div class="9u -1u 12u$(2)">
+        <h3>Comments</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Poster</th>
+                    <th>Operations</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Item 1</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                    <td><a class="button small alt special">Signer</a></td>
+                </tr>
+                <tr>
+                    <td>Item 2</td>
+                    <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                    <td>19.99</td>
+                    <td><a class="button small alt special">Signer</a></td>
+                </tr>
+                <tr>
+                    <td>Item 3</td>
+                    <td> Morbi faucibus arcu accumsan lorem.</td>
+                    <td>29.99</td>
+                    <td><a class="button small alt special">Signer</a></td>
+                </tr>
+                <tr>
+                    <td>Item 4</td>
+                    <td>Vitae integer tempus condimentum.</td>
+                    <td>19.99</td>
+                    <td><a class="button small alt special">Signer</a></td>
+                </tr>
+                <tr>
+                    <td>Item 5</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                    <td><a class="button small alt special">Signer</a></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>100.00</td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% endblock %}
