@@ -53,3 +53,7 @@ sosvelo_add_point:
     defaults: { _controller: SOSVeloPointBundle:Point:add_point }
     requirements:
         _method:  GET|POST
+
+fos_message:
+    resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    prefix: /optional_routing_prefix
