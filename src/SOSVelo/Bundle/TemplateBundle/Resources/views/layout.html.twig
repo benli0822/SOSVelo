@@ -11,6 +11,14 @@
     {{ include('SOSVeloTemplateBundle:Common:menu.html.twig') }}
 {% endblock %}
 
+{% block cta %}
+    {{ include('SOSVeloTemplateBundle:Common:cta.html.twig') }}
+{% endblock %}
+
+{% block footer %}
+    {{ include('SOSVeloTemplateBundle:Common:footer.html.twig') }}
+{% endblock %}
+
 {% block javascripts %}
     {% javascripts '@SOSVeloTemplateBundle/Resources/public/css/ie/html5shiv.js' output='css/ie/html5shiv.js' %}
     <!--[if lte IE 8]>
