@@ -1,0 +1,24 @@
+{# SOSVelo/Bundle/TemplateBundle/Resources/views/layout.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block noscriptstylesheets %}
+    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/*' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block menu %}
+    {{ include('SOSVeloTemplateBundle:Common:menu.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@SOSVeloTemplateBundle/Resources/public/css/ie/html5shiv.js' output='css/ie/html5shiv.js' %}
+    <!--[if lte IE 8]>
+    <script src="{{ asset_url }}"></script>
+    <![endif]-->
+    {% endjavascripts %}
+
+    {% javascripts '@jquery_and_skel_js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

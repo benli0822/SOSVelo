@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}SOSVelo !{% endblock %}</title>
+        {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/*' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        {% endstylesheets %}
+        {% javascripts '@SOSVeloTemplateBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
+        <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
+        <script> //TODO need to change to a relative path </script>
+        <script src="http://127.0.0.1:8000/geojson/points"></script>
+        {% endjavascripts %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('bundles/sosvelotemplate/img/sosvelo/sosvelo_icon.png') }}" />
+    </head>
+    <body>
+        {% set currentPath = app.request.getPathInfo()|split('/')[1] %}
+        <div id="page">
+            <div id="header">
+                <div id="logo">
+                    <a href="home"><img src="{{ asset('bundles/sosvelotemplate/img/sosvelo/sosvelo_logo.png') }}" /> </a>
+                </div>
+                <div id="login_sign_in">
+                    <ul>
+                        <li>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            Connecté en tant que {{ app.user.username }} <br> <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                            {% else %}
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        </li>
+
+                        <li><a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div id="menu_top">
+                    <ul>
+                        <li><a href="home" {% if currentPath in "home" %}class='color_E97317'{% endif %}> Accueil </a></li>
+                        {% if currentPath in "home" %}<li><a href="#" onclick="nearest()" {% if currentPath in "nearest" %}class='color_E97317'{% endif %}> Trouver le point le plus proche </a></li>{% endif %}
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_TRADER')%}
+                        <li><a href="{{ path('sosvelo_add_point') }}">Ajouter un point</a></li>
+                        {% endif %}
+                        <li><a href="#footer_content"> Contacter l'ADAV </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="content">
+                {% block body %}
+                <div id="map"></div>
+                <script>
+                    var lat_1;
+                    var lng_1;
+                    var layer;
+                    var nearest_lat = lat_1;
+                    var nearest_lng = lng_1;
+                    //init_map
+                    var map = L.map('map', {
+                        layers: MQ.mapLayer()
+                    });
+
+                   // L.tileLayer('http://{s}.tile.cloudmade.com/1cc75fcc8e2243d1b2f6aab1e5850be1/998/256/{z}/{x}/{y}.png', {
+                        //attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                       // maxZoom: 18
+                   // }).addTo(map);
+                    //end of init_map
+
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            lat_1 = position.coords.latitude;
+                            lng_1 = position.coords.longitude;
+
+                            show_points(lat_1, lng_1);
+                        });
+
+                        //geolocation
+                        map.locate({setView: true, maxZoom: 13});
+                        function onLocationFound(e) {
+                            var radius = e.accuracy / 2;
+
+                            L.marker(e.latlng).addTo(map)
+                                    .bindPopup("Vous êtes dans un rayon de " + radius + " mèters de ce point.").openPopup();
+
+                            L.circle(e.latlng, radius).addTo(map);
+                        }
+                        map.on('locationfound', onLocationFound);
+                        //end of geolocation
+                    } else {
+                        alert("Géolocalisation n'est pas supportée par votre navigateur. :(");
+                    }
+
+                    //points show_points
+                    function show_points(lat_1, lng_1) {
+                        var LeafIcon = L.Icon.extend({
+                            iconSize: [38, 95],
+                            iconAnchor: [22, 94],
+                            popupAnchor: [-3, -76]
+                        });
+                        var SOSVeloIcon = new LeafIcon({iconUrl: "{{ asset('bundles/sosvelotemplate/img/sosvelo/sosvelo_icon.png') }}"});
+
+                        var RedIcon = L.Icon.extend({
+                            iconSize: [38, 95],
+                            iconAnchor: [22, 94],
+                            popupAnchor: [-3, -76]
+                        });
+                        var redIcon = new RedIcon({iconUrl: "{{ asset('bundles/sosvelotemplate/img/sosvelo/marker_icon_red.png') }}"});
+                        var divIcon = L.divIcon({className: 'divIcon'});
+
+                        L.geoJson([points], {
+                            pointToLayer: function(feature, latLng) {
+                                var lat_2 = latLng.lat;
+                                var lng_2 = latLng.lng;
+                                if (nearest_lat == undefined) {
+                                    nearest_lat = latLng.lat;
+                                    nearest_lng = latLng.lng;
+                                }
+                                if (latLng.distanceTo({lat: lat_1, lng: lng_1}) < L.latLng(nearest_lat, nearest_lng).distanceTo({lat: lat_1, lng: lng_1})) {
+                                    nearest_lat = lat_2;
+                                    nearest_lng = lng_2;
+                                }
+                                {% if is_granted('ROLE_ADMIN') %}
+                                if (feature.properties.activated) {
+                                    return L.marker(latLng, {
+                                        icon: SOSVeloIcon
+                                    }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a><span class='space_80px'/><a href='#' onClick='deletePoint(" + feature.properties.id + ")'>Supprimer ce point.</a>");
+                                }
+                                else {
+                                    return L.marker(latLng, {
+                                        icon: redIcon
+                                    }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='activatePoint(" + feature.properties.id + ")'>Activer ce point.</a><span class='space_80px'/><a href='#' onClick='deletePoint(" + feature.properties.id + ")'>Supprimer ce point.</a>");
+                                }
+                                {% else %}
+                                if (feature.properties.activated) {
+                                    return L.marker(latLng, {
+                                        icon: SOSVeloIcon
+                                    }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a>");
+                                }
+                                else {
+                                    return L.marker(latLng, {icon: divIcon});
+                                }
+                                {% endif %}
+                            }
+                        }).addTo(map);
+                    }
+                    //end of show_points
+
+                    //route
+                    function route(lat_1, lng_1, lat_2, lng_2) {
+                        if (layer != null)
+                            map.removeLayer(layer);
+
+                        dir = MQ.routing.directions();
+                        dir = MQ.routing.directions()
+                                .on('success', function(data) {
+                                    var legs = data.route.legs,
+                                            html = '',
+                                            maneuvers,
+                                            i;
+
+                                    if (legs && legs.length) {
+                                        maneuvers = legs[0].maneuvers;
+
+                                        for (i = 0; i < maneuvers.length; i++) {
+                                            html += (i + 1) + '. ';
+                                            html += maneuvers[i].narrative + '<br />';
+                                        }
+
+                                        L.DomUtil.get('route-narrative').innerHTML = html;
+                                    }
+                                });
+                        dir.route({
+                            locations: [
+                                {latLng: {lat: lat_1, lng: lng_1}},
+                                {latLng: {lat: lat_2, lng: lng_2}}
+                            ],
+                            options: {routeType: 'bicycle', locale: "fr_FR"}
+                        });
+                        layer = MQ.routing.routeLayer({
+                            directions: dir,
+                            fitBounds: true,
+                            locale: "fr_FR"
+                        });
+                        map.addLayer(layer);
+                    }
+                    //end of route
+                    //nearest
+                    function nearest() {
+                        route(lat_1, lng_1, nearest_lat, nearest_lng);
+                    }
+                    //end nearest
+                    //routeToPoint
+                    function routeToPoint(lat_1, lng_1, lat_2, lng_2) {
+                        route(lat_1, lng_1, lat_2, lng_2);
+                    }
+                    //end routeToPoint
+                    //deletePoint
+                    function deletePoint(id) {
+                        $.ajax({
+                            url: 'points/' + id,
+                            type: 'DELETE',
+                            success: function() {
+                                alert("Point supprimé avec succès .");
+                                window.location.href = "home";
+                            }
+                        });
+                    }
+                    //end deletePoint
+                    //activatePoint
+                    function activatePoint(id) {
+                        $.ajax({
+                            url: 'points/activate/' + id,
+                            type: 'POST',
+                            success: function() {
+                                alert("Point activé avec succès .");
+                                window.location.href = "home";
+                            }
+                        });
+                    }
+                    //end activatePoint
+                </script>
+                {% endblock %}
+            </div>
+
+            <div id="route-narrative" ></div>
+            <div>
+                {% if currentPath in "home" %}
+                {% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : currentPath } %}
+                {% endif %}
+            </div>
+            <div id="footer">
+                <div id="footer_content">
+                    Association ADAV, 23 Rue Gosselet, 59000 Lille <span class="space_50px">- Tél : 03 20 86 17 25</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
