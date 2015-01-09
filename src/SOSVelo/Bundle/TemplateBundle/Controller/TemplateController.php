@@ -68,4 +68,14 @@ class TemplateController extends Controller
     {
         return $this->render('SOSVeloTemplateBundle:Template:uc.html.twig');
     }
+
+    /**
+     * @Apidoc()
+     * @Route("/point")
+     * @Template()
+     */
+    public function pointAction()
+    {
+        return $this->render('SOSVeloTemplateBundle:Template:point.html.twig');
+    }
 }

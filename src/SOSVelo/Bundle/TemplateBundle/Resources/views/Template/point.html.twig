@@ -1,0 +1,131 @@
+{# SOSVelo/Bundle/TemplateBundle/Resources/views/Template/point.html.twig #}
+
+{% extends '@SOSVeloTemplate/layout_uc.html.twig' %}
+
+{% block title %}Your point {#TODO username#} {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/chosen.min.css' output='chosen.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"></link>
+    {% endstylesheets %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="9u -1u 12u$(2)">
+        <h3>Point</h3>
+
+        <form action="#" method="post">
+            <div class="row uniform">
+                <div class="6u 12u$(4)">
+                    <label>Point's Name</label>
+                </div>
+                <div class="6u$ 12u$(4)">
+                    <label>Point's status</label>
+                </div>
+                <div class="12u$">
+                    <div class="select-wrapper">
+                        <select id="category" name="category">
+                            <option value="">- Category -</option>
+                            <option value="1">Manufacturing</option>
+                            <option value="1">Shipping</option>
+                            <option value="1">Administration</option>
+                            <option value="1">Human Resources</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="4u 12u$(3)">
+                    <input type="radio" name="priority" id="priority-normal">
+                    <label for="priority-normal">Normal Priority</label>
+                </div>
+                <div class="4u$ 12u$(3)">
+                    <input type="radio" name="priority" id="priority-high">
+                    <label for="priority-high">High Priority</label>
+                </div>
+
+                <div class="12u">
+                    <em>Select your offer</em>
+                    <select data-placeholder="Your Favorite Football Team" style="width:350px;" class="chosen-select"
+                            multiple tabindex="6">
+                        <option value=""></option>
+                        <optgroup label="NFC EAST">
+                            <option>Dallas Cowboys</option>
+                            <option>New York Giants</option>
+                            <option>Philadelphia Eagles</option>
+                            <option>Washington Redskins</option>
+                        </optgroup>
+                        <optgroup label="NFC NORTH">
+                            <option>Chicago Bears</option>
+                            <option>Detroit Lions</option>
+                            <option>Green Bay Packers</option>
+                            <option>Minnesota Vikings</option>
+                        </optgroup>
+                        <optgroup label="NFC SOUTH">
+                            <option>Atlanta Falcons</option>
+                            <option>Carolina Panthers</option>
+                            <option>New Orleans Saints</option>
+                            <option>Tampa Bay Buccaneers</option>
+                        </optgroup>
+                        <optgroup label="NFC WEST">
+                            <option>Arizona Cardinals</option>
+                            <option>St. Louis Rams</option>
+                            <option>San Francisco 49ers</option>
+                            <option>Seattle Seahawks</option>
+                        </optgroup>
+                        <optgroup label="AFC EAST">
+                            <option>Buffalo Bills</option>
+                            <option>Miami Dolphins</option>
+                            <option>New England Patriots</option>
+                            <option>New York Jets</option>
+                        </optgroup>
+                        <optgroup label="AFC NORTH">
+                            <option>Baltimore Ravens</option>
+                            <option>Cincinnati Bengals</option>
+                            <option>Cleveland Browns</option>
+                            <option>Pittsburgh Steelers</option>
+                        </optgroup>
+                        <optgroup label="AFC SOUTH">
+                            <option>Houston Texans</option>
+                            <option>Indianapolis Colts</option>
+                            <option>Jacksonville Jaguars</option>
+                            <option>Tennessee Titans</option>
+                        </optgroup>
+                        <optgroup label="AFC WEST">
+                            <option>Denver Broncos</option>
+                            <option>Kansas City Chiefs</option>
+                            <option>Oakland Raiders</option>
+                            <option>San Diego Chargers</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!-- Break -->
+                <div class="12u$">
+                    <ul class="actions">
+                        <li><input type="submit" value="Submit"></li>
+                        <li><input type="reset" class="alt" value="Reset"></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {% javascripts '@SOSVeloTemplateBundle/Resources/public/js/chosen.jquery.min.js' output='js/chosen.jquery.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        var config = {
+            '.chosen-select': {}
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+    </script>
+{% endblock %}
