@@ -40,9 +40,7 @@
 
         <div class="row uniform 0%">
             <div class="8u -1u 12u(2)">
-                <span class="image fit">
-                    <div id="map"  style="height: 500px"></div>
-                </span>
+                <div id="map" class="map" style="height: 500px"></div>
             </div>
             <div class="6u 2u$ 12u(2)">
                 <p>asdasdasd</p>
@@ -105,8 +103,8 @@
         });
 
         L.tileLayer('http://{s}.tile.cloudmade.com/1cc75fcc8e2243d1b2f6aab1e5850be1/998/256/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-        maxZoom: 18
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+            maxZoom: 18
         }).addTo(map);
         //end of init_map
 
@@ -266,5 +264,15 @@
             });
         }
         //end activatePoint
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                    .setLatLng(e.latlng)
+                    .setContent("You clicked the map at " + e.latlng.toString())
+                    .openOn(map);
+        }
+
+        map.on('click', onMapClick);
     </script>
 {% endblock %}
