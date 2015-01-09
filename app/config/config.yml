@@ -115,6 +115,8 @@ fos_message:
     thread_class: SOSVelo\Bundle\UserBundle\Entity\UserMessageThread
     message_class: SOSVelo\Bundle\UserBundle\Entity\UserMessage
 
+
+
 assetic:
     bundles: [ "FOSUserBundle", "FOSCommentBundle", "SOSVeloTemplateBundle", "FOSMessageBundle" ]
 
