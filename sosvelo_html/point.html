@@ -18,6 +18,8 @@
     <script src="js/skel.min.js"></script>
     <script src="js/skel-layers.min.js"></script>
     <script src="js/init.js"></script>
+    <script src="js/chosen.jquery.min.js"></script>
+    <link rel="stylesheet" href="css/chosen.min.css"/>
     <noscript>
         <link rel="stylesheet" href="css/skel.css"/>
         <link rel="stylesheet" href="css/style.css"/>
@@ -78,25 +80,21 @@
             <form action="#" method="post">
                 <div class="row uniform">
                     <div class="6u 12u$(4)">
-                        <input type="text" placeholder="Username" value="" id="name" name="name">
+                        <label>Point's Name</label>
                     </div>
                     <div class="6u$ 12u$(4)">
-                        <input type="email" placeholder="Email" value="" id="email" name="email">
+                        <label>Point's status</label>
                     </div>
-                    <div class="6u 12u$(4)">
-                        <input type="text" placeholder="Firstname" value="" id="name" name="name">
-                    </div>
-                    <div class="6u$ 12u$(4)">
-                        <input type="email" placeholder="Lastname" value="" id="email" name="email">
-                    </div>
-                    <!-- Break -->
                     <div class="12u$">
-                        <label>You are a partenaire</label>
-                    </div>
-                    <!-- Break -->
-                    <div class="4u 12u$(3)">
-                        <input type="radio" checked="" name="priority" id="priority-low">
-                        <label for="priority-low">Low Priority</label>
+                        <div class="select-wrapper">
+                            <select id="category" name="category">
+                                <option value="">- Category -</option>
+                                <option value="1">Manufacturing</option>
+                                <option value="1">Shipping</option>
+                                <option value="1">Administration</option>
+                                <option value="1">Human Resources</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="4u 12u$(3)">
                         <input type="radio" name="priority" id="priority-normal">
@@ -106,23 +104,66 @@
                         <input type="radio" name="priority" id="priority-high">
                         <label for="priority-high">High Priority</label>
                     </div>
-                    <!-- Break -->
-                    <div class="6u 12u$(3)">
-                        <input type="checkbox" name="copy" id="copy">
-                        <label for="copy">Email me a copy of this message</label>
+
+                    <div class="12u">
+                        <em>Select your offer</em>
+                        <select data-placeholder="Your Favorite Football Team" style="width:350px;" class="chosen-select" multiple tabindex="6">
+                            <option value=""></option>
+                            <optgroup label="NFC EAST">
+                                <option>Dallas Cowboys</option>
+                                <option>New York Giants</option>
+                                <option>Philadelphia Eagles</option>
+                                <option>Washington Redskins</option>
+                            </optgroup>
+                            <optgroup label="NFC NORTH">
+                                <option>Chicago Bears</option>
+                                <option>Detroit Lions</option>
+                                <option>Green Bay Packers</option>
+                                <option>Minnesota Vikings</option>
+                            </optgroup>
+                            <optgroup label="NFC SOUTH">
+                                <option>Atlanta Falcons</option>
+                                <option>Carolina Panthers</option>
+                                <option>New Orleans Saints</option>
+                                <option>Tampa Bay Buccaneers</option>
+                            </optgroup>
+                            <optgroup label="NFC WEST">
+                                <option>Arizona Cardinals</option>
+                                <option>St. Louis Rams</option>
+                                <option>San Francisco 49ers</option>
+                                <option>Seattle Seahawks</option>
+                            </optgroup>
+                            <optgroup label="AFC EAST">
+                                <option>Buffalo Bills</option>
+                                <option>Miami Dolphins</option>
+                                <option>New England Patriots</option>
+                                <option>New York Jets</option>
+                            </optgroup>
+                            <optgroup label="AFC NORTH">
+                                <option>Baltimore Ravens</option>
+                                <option>Cincinnati Bengals</option>
+                                <option>Cleveland Browns</option>
+                                <option>Pittsburgh Steelers</option>
+                            </optgroup>
+                            <optgroup label="AFC SOUTH">
+                                <option>Houston Texans</option>
+                                <option>Indianapolis Colts</option>
+                                <option>Jacksonville Jaguars</option>
+                                <option>Tennessee Titans</option>
+                            </optgroup>
+                            <optgroup label="AFC WEST">
+                                <option>Denver Broncos</option>
+                                <option>Kansas City Chiefs</option>
+                                <option>Oakland Raiders</option>
+                                <option>San Diego Chargers</option>
+                            </optgroup>
+                        </select>
                     </div>
-                    <div class="6u$ 12u$(3)">
-                        <input type="checkbox" checked="" name="human" id="human">
-                        <label for="human">I am a human and not a robot</label>
-                    </div>
-                    <!-- Break -->
-                    <div class="12u$">
-                        <textarea rows="6" placeholder="Enter your message" id="message" name="message"></textarea>
-                    </div>
+
                     <!-- Break -->
                     <div class="12u$">
                         <ul class="actions">
-                            <li><input type="submit" value="Send Message"></li>
+                            <li><input type="submit" value="Submit"></li>
                             <li><input type="reset" class="alt" value="Reset"></li>
                         </ul>
                     </div>
@@ -131,5 +172,14 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+    var config = {
+        '.chosen-select'           : {}
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+</script>
 </body>
 </html>
