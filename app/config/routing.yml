@@ -53,3 +53,21 @@ sosvelo_add_point:
     defaults: { _controller: SOSVeloPointBundle:Point:add_point }
     requirements:
         _method:  GET|POST
+
+sosvelo_uc:
+    path: /uc
+    defaults: { _controller: SOSVeloTemplateBundle:Template:uc }
+    requirements:
+        _method: GET|POST
+
+sosvelo_uc_point:
+    path: /point
+    defaults: { _controller: SOSVeloTemplateBundle:Template:point }
+    requirements:
+        _method: GET|POST
+
+sosvelo_uc_friend:
+    path: /friend
+    defaults: { _controller: SOSVeloTemplateBundle:Template:friend }
+    requirements:
+        _method: GET|POST

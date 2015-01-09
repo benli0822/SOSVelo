@@ -1,12 +1,12 @@
 <div class="2u 12u$(2)">
     <ul class="nav">
-        <li><a id="compte" href="uc">Votre Compte</a></li>
-        <li><a id="info" href="point">Info Point</a></li>
-        <li><a id="listamis" href="friends">Liste des amis/aderents</a></li>
-        <li><a id="normalization-link" href="comments">Liste des
-                commentaires </a></li>
-        <li><a id="listamis" href="usercontact">Contacter ADAV</a></li>
-        <li><a id="normalization-link" href="messages">Boître de
-                messages</a></li>
+        <li><a id="compte" href="{{ url('sosvelo_uc') }}">Votre Compte</a></li>
+        <li><a id="info" href="{{ url('sosvelo_uc_point') }}">Info Point</a></li>
+        <li><a id="listamis" href="{{ url('sosvelo_uc_friend') }}">Liste des amis/aderents</a></li>
+        {#<li><a id="normalization-link" href="{{ url('comments') }}">Liste des#}
+                {#commentaires </a></li>#}
+        {#<li><a id="listamis" href="{{ url('usercontact') }}">Contacter ADAV</a></li>#}
+        {#<li><a id="normalization-link" href="{{ url('message') }}">Boître de#}
+                {#messages</a></li>#}
     </ul>
 </div>
