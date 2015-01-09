@@ -58,4 +58,14 @@ class TemplateController extends Controller
     {
         return $this->render('SOSVeloTemplateBundle:Template:register.html.twig');
     }
+
+    /**
+     * @Apidoc()
+     * @Route("/uc")
+     * @Template()
+     */
+    public function ucAction()
+    {
+        return $this->render('SOSVeloTemplateBundle:Template:uc.html.twig');
+    }
 }

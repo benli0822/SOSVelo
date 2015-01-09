@@ -1,0 +1,64 @@
+{# SOSVelo/Bundle/TemplateBundle/Resources/views/layout_uc.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block noscriptstylesheets %}
+    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/*' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/jquery.navgoco.css' output='css/jquery.navgoco.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"></link>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    {% block menu %}
+        {{ include('SOSVeloTemplateBundle:Common:menu.html.twig') }}
+    {% endblock %}
+    <!-- Main -->
+    <section id="main" class="container">
+        <div class="row 0%">
+            {% block uc_menu %}
+                {{ include('SOSVeloTemplateBundle:Template:uc_menu.html.twig') }}
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+
+            {% block cta %}
+            {% endblock %}
+
+        </div>
+    </section>
+    {% block footer %}
+        {{ include('SOSVeloTemplateBundle:Common:footer.html.twig') }}
+    {% endblock %}
+{% endblock %}
+
+    {% block javascripts %}
+        {% javascripts '@SOSVeloTemplateBundle/Resources/public/css/ie/html5shiv.js' output='css/ie/html5shiv.js' %}
+        <!--[if lte IE 8]>
+        <script src="{{ asset_url }}"></script>
+        <![endif]-->
+        {% endjavascripts %}
+
+        {% javascripts '@jquery_and_skel_js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% javascripts
+        '@SOSVeloTemplateBundle/Resources/public/js/jquery.cookie.min.js'
+        '@SOSVeloTemplateBundle/Resources/public/js/jquery.navgoco.min.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#header').attr('class', 'skel-layers-fixed');
+                $('.nav').navgoco();
+            });
+        </script>
+    {% endblock %}
