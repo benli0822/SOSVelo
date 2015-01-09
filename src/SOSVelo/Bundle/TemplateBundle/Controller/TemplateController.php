@@ -28,4 +28,34 @@ class TemplateController extends Controller
     {
         return $this->render('SOSVeloTemplateBundle:Template:contact.html.twig');
     }
+
+    /**
+     * @Apidoc()
+     * @Route("/generic")
+     * @Template()
+     */
+    public function genericAction()
+    {
+        return $this->render('SOSVeloTemplateBundle:Template:generic.html.twig');
+    }
+
+    /**
+     * @Apidoc()
+     * @Route("/login")
+     * @Template()
+     */
+    public function loginAction()
+    {
+        return $this->render('SOSVeloTemplateBundle:Template:login.html.twig');
+    }
+
+    /**
+     * @Apidoc()
+     * @Route("/register")
+     * @Template()
+     */
+    public function registerAction()
+    {
+        return $this->render('SOSVeloTemplateBundle:Template:register.html.twig');
+    }
 }
