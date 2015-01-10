@@ -2,7 +2,7 @@
 {% extends 'base.html.twig' %}
 
 {% block noscriptstylesheets %}
-    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/*' %}
+    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/*' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
     {% endstylesheets %}
 {% endblock %}
