@@ -7,9 +7,25 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
 
-    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/owl.carousel.css' output='css/owl.carousel.css' %}
+    {% stylesheets
+        '@SOSVeloTemplateBundle/Resources/public/css/owl.carousel.min.css'
+        '@SOSVeloTemplateBundle/Resources/public/css/owl.theme.default.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
+
+    <style>
+        /*demo item for carousel*/
+        #owl-slider .item{
+            background: #42bdc2;
+            padding: 30px 0px;
+            margin: 5px;
+            color: #FFF;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            text-align: center;
+        }
+    </style>
 {% endblock %}
 
 
@@ -65,15 +81,6 @@
                     <div class="item"><h1>15</h1></div>
                     <div class="item"><h1>16</h1></div>
                 </div>
-
-                <br/>
-
-                <div class="customNavigation">
-                    <a class="button small special prev">Previous</a>
-                    <a class="button small special next">Next</a>
-                    <a class="button small special play">Autoplay</a>
-                    <a class="button small special stop">Stop</a>
-                </div>
             </div>
         </div>
 
@@ -110,28 +117,11 @@
             var owl = $("#owl-slider");
 
             owl.owlCarousel({
-                items: 10, //10 items above 1000px browser width
+                items: 6, //10 items above 1000px browser width
                 itemsDesktop: [1000, 5], //5 items between 1000px and 901px
                 itemsDesktopSmall: [900, 3], // betweem 900px and 601px
                 itemsTablet: [600, 2], //2 items between 600 and 0
                 itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
-            });
-
-// Custom Navigation Events
-            $(".next").click(function () {
-                owl.trigger('owl.next');
-            });
-
-            $(".prev").click(function () {
-                owl.trigger('owl.prev');
-            });
-
-            $(".play").click(function () {
-                owl.trigger('owl.play', 1000); //owl.play event accept autoPlay speed as second parameter
-            });
-
-            $(".stop").click(function () {
-                owl.trigger('owl.stop');
             });
         });
     </script>
