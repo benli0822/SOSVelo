@@ -6,10 +6,10 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-    <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
-    <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
-    <script src="http://127.0.0.1:8888/web/app_dev.php/geojson/points"></script>
+
+    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/owl.carousel.css' output='css/owl.carousel.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
 {% endblock %}
 
 
@@ -62,8 +62,6 @@
                 <img class="owl-lazy" data-src="http://placehold.it/350x250&text=11" alt="">
             </div>
         </div>
-
-
         <br/>
         <ul class="actions">
             <li><a href="#" class="button special">Sign Up</a></li>
@@ -85,11 +83,27 @@
 
     {{ parent() }}
 
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
+    <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
+    <script src="http://127.0.0.1:8888/web/app_dev.php/geojson/points"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('body').attr('class', 'landing');
+
+            $('.owl-carousel').owlCarousel({
+                items:4,
+                lazyLoad:true,
+                loop:true,
+                margin:5
+            });
         });
     </script>
+
+    {% javascripts '@SOSVeloTemplateBundle/Resources/public/js/owl.carousel.min.js' output='js/owl.carousel.min.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
 
     <script type="text/javascript">
         var lat_1;
