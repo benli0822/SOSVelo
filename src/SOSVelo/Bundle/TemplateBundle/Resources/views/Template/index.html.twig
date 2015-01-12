@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
 
     {% stylesheets
-        '@SOSVeloTemplateBundle/Resources/public/css/owl.carousel.min.css'
-        '@SOSVeloTemplateBundle/Resources/public/css/owl.theme.default.css' %}
+    '@SOSVeloTemplateBundle/Resources/public/css/owl.carousel.min.css'
+    '@SOSVeloTemplateBundle/Resources/public/css/owl.theme.default.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
 
     <style>
         /*demo item for carousel*/
-        #owl-slider .item{
+        #owl-slider .item {
             background: #42bdc2;
             padding: 30px 0px;
             margin: 5px;
@@ -38,28 +38,35 @@
         {{ parent() }}
     {% endblock %}
     <!-- Banner -->
-    <section id="banner">
+    <section id="banner" style="padding-top: 60px;">
         <h2>SOSVélo</h2>
 
         <p>Vous trouvez ici toutes les informations de points SOSVélo</p>
 
         <form>
             <div class="row uniform 50%">
-                <div class="5u -3u 12u(3) align-center">
+                <div class="7u -1u 12u(3)">
                     <input type="text" name="search" id="search" placeholder="Rechercher votre point"/>
                 </div>
-                <div class="1u 4u(3) align-center">
+                <div class="1u 12(3)">
+                    <select name="type" id="type">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+                <div class="1u 2u(3) align-center">
                     <input type="submit" value="Search" class="fit"/>
                 </div>
             </div>
         </form>
 
         <div class="row uniform 0%">
-            <div class="8u -1u 12u(2)">
-                <div id="map" class="map" style="height: 500px"></div>
+            <div class="9u -1u 12u(2)">
+                <div id="map" class="map"></div>
             </div>
-            <div class="6u 2u$ 12u(2)">
-                <div class="box"></div>
+            <div class="1u$ 12u(2)">
+                <p id="slider-info"></p>
             </div>
 
             <div class="12u -1u 10u$ ">
@@ -117,22 +124,22 @@
             var owl = $("#owl-slider");
 
             owl.owlCarousel({
-                loop:true,
-                margin:10,
-                responsiveClass:true,
-                responsive:{
-                    0:{
-                        items:1,
-                        nav:true
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
                     },
-                    600:{
-                        items:3,
-                        nav:false
+                    600: {
+                        items: 3,
+                        nav: false
                     },
-                    1000:{
-                        items:5,
-                        nav:true,
-                        loop:false
+                    1000: {
+                        items: 5,
+                        nav: true,
+                        loop: false
                     }
                 }
 //                items: 6, //10 items above 1000px browser width
@@ -142,6 +149,12 @@
 //                itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
             });
         });
+
+        // responsive design for map, resize the map according to the current window's size
+        $(window).on("resize", function() {
+            $("#map").height($(window).height()/1.5).width($(window).width()/1.4);
+            map.invalidateSize();
+        }).trigger("resize");
     </script>
 
     {% javascripts '@SOSVeloTemplateBundle/Resources/public/js/owl.carousel.min.js' output='js/owl.carousel.min.js' %}
@@ -180,6 +193,8 @@
 
                 L.marker(e.latlng).addTo(map)
                         .bindPopup("Vous êtes dans un rayon de " + radius + " mèters de ce point.").openPopup();
+
+                document.getElementById("slider-info").innerHTML = "Vous êtes dans un rayon de " + radius + " mèters de ce point.";
 
                 L.circle(e.latlng, radius).addTo(map);
             }
@@ -235,6 +250,7 @@
                     }
                     {% else %}
                     if (feature.properties.activated) {
+//                        document.getElementById("slider-info").innerHTML = "SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a>";
                         return L.marker(latLng, {
                             icon: SOSVeloIcon
                         }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a>");
