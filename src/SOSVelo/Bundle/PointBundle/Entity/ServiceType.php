@@ -42,6 +42,11 @@ class ServiceType
      */
     private $privilege;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="SOSVelo\Bundle\PointBundle\Entity\Point", cascade={"persist"})
+     */
+    private $point;
+
 
     /**
      * Get id
@@ -121,4 +126,26 @@ class ServiceType
     {
         return $this->privilege;
     }
+
+    /**
+     * Gets points
+     *
+     * @return mixed
+     */
+    public function getPoint()
+    {
+        return $this->point;
+    }
+
+    /**
+     * Set comments
+     *
+     * @param mixed $point
+     */
+    public function setPoint($point)
+    {
+        $this->point = $point;
+    }
+
+
 }
