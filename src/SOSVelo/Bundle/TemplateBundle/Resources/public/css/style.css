@@ -1226,7 +1226,7 @@
 		background-position: top left,						center center;
 		background-repeat: repeat,							no-repeat;
 		background-size: auto,							cover;
-		color: #fff;
+		color: #000;
 		padding: 12em 0 20em 0;
 		text-align: center;
 	}
@@ -1250,6 +1250,7 @@
 		}
 
 		#banner p {
+			color: #fff;
 			font-size: 1.25em;
 			margin-bottom: 1.75em;
 		}
