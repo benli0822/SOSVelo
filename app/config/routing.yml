@@ -28,6 +28,10 @@ fos_comment_api:
     prefix: /api
     defaults: { _format: html }
 
+fos_message:
+    resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    prefix: /optional_routing_prefix
+
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
@@ -53,3 +57,5 @@ sosvelo_add_point:
     defaults: { _controller: SOSVeloPointBundle:Point:add_point }
     requirements:
         _method:  GET|POST
+
+

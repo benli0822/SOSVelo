@@ -110,5 +110,13 @@ fos_comment:
             edit: ROLE_ADMIN
             delete: ROLE_ADMIN
 
+fos_message:
+    db_driver: orm
+    thread_class: SOSVelo\Bundle\UserBundle\Entity\UserMessageThread
+    message_class: SOSVelo\Bundle\UserBundle\Entity\UserMessage
+
+
+
 assetic:
-    bundles: [ "FOSUserBundle", "FOSCommentBundle", "SOSVeloTemplateBundle" ]
+    bundles: [ "FOSUserBundle", "FOSCommentBundle", "SOSVeloTemplateBundle", "FOSMessageBundle" ]
+

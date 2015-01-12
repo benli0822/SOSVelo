@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\CommentBundle\FOSCommentBundle(),
+            new FOS\MessageBundle\FOSMessageBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new SOSVelo\Bundle\UserBundle\SOSVeloUserBundle(),
             new SOSVelo\Bundle\CommentBundle\SOSVeloCommentBundle(),
