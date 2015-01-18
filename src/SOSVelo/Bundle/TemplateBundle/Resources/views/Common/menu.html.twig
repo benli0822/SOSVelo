@@ -1,6 +1,6 @@
 <!-- Header -->
 <header id="header" class="alt">
-    <h1><a href="home">SOSVélo</a></h1>
+    <h1><a href="home"><img src="{{ asset('bundles/sosvelotemplate/img/sosvelo/sosvelo_logo.png') }}"/></a></h1>
     <nav id="nav">
         <ul>
             <li><a href="home">Home</a></li>
@@ -21,8 +21,19 @@
                     <!--</li>-->
                 </ul>
             </li>
-            <li><a href="login" class="button">Login</a></li>
-            <li><a href="register" class="button">Sign Up</a></li>
+
+            <li>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                Connecté en tant que {{ app.user.username }} <br> <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                {% else %}
+                <a class="button" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            </li>
+
+            <li>
+                <a class="button" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+            </li>
+            {% endif %}
+
         </ul>
     </nav>
 </header>

@@ -49,7 +49,6 @@ assetic:
                 - '@SOSVeloTemplateBundle/Resources/public/js/jquery.scrollgress.min.js'
                 - '@SOSVeloTemplateBundle/Resources/public/js/skel.min.js'
                 - '@SOSVeloTemplateBundle/Resources/public/js/skel-layers.min.js'
-                - '@SOSVeloTemplateBundle/Resources/public/js/init.js'
         skel_css:
             inputs:
                 - '@SOSVeloTemplateBundle/Resources/public/css/skel.css'

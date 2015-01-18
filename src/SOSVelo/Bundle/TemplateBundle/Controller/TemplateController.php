@@ -51,7 +51,7 @@ class TemplateController extends Controller
 
     /**
      * @Apidoc()
-     * @Route("/register")
+     * @Route("/registration/register")
      * @Template()
      */
     public function registerAction()
