@@ -1,23 +1,94 @@
-{% extends "SOSVeloTemplateBundle:Template:index.html.twig" %}
+{#{% extends "SOSVeloTemplateBundle:Template:index.html.twig" %}#}
+
+{% extends '@SOSVeloTemplate/layout.html.twig' %}
+
+{% block title %}SOSVelo ! - Login{% endblock %}
+
+{% block noscriptstylesheets %}
+    {{ parent() }}
+{% endblock %}
+
     {% block body %}
-    {% trans_default_domain 'FOSUserBundle' %}    
-        <form action="{{ path("fos_user_security_check") }}" method="post" id="login">
-            <h1>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</h1>
-                {% if error %}
-                    <div>{{ error|trans }}</div><br>
-                {% endif %}
-            <fieldset id="inputs">
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% trans_default_domain 'FOSUserBundle' %}
 
-                <label for="username">{{ 'security.login.username'|trans }}</label>
-                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+        {% block menu %}
+            {{ parent() }}
+        {% endblock %}
 
-                <label for="password">{{ 'security.login.password'|trans }}</label>
-                <input type="password" id="password" name="_password" required="required" />
-            </fieldset>
+        <!-- Main -->
+        <section id="main" class="container">
+            <div class="row">
+                <div class="12u$ 12u$(2)">
+                    <!-- Text -->
+                    <section class="box">
+                        <h2 class="align-center">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</h2>
+                        {% if error %}
+                            <div>{{ error|trans }}</div><br>
+                        {% endif %}
+                        <form action="{{ path("fos_user_security_check") }}" method="post" id="login">
 
-            <fieldset id="actions">
-                <input type="submit" id="submit" name="_submit" value="{{ 'security.login.submit'|trans }}"/>
-            </fieldset>
-        </form>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+                            <div class="row uniform 50%">
+                                <div class="6u -3u">
+                                    <label for="username">{{ 'security.login.username'|trans }}</label>
+                                    <input type="text" name="username" id="username" value="{{ last_username }}"
+                                           required="required" placeholder="Username"/>
+                                </div>
+                            </div>
+                            <div class="row uniform 50%">
+                                <div class="6u -3u">
+                                    <label for="password">{{ 'security.login.password'|trans }}</label>
+                                    <input type="password" id="password" name="_password" required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="row uniform 50%">
+                                <!-- Break -->
+                                <div class="3u -3u">
+                                    <input type="radio" id="priority-low" name="priority" checked>
+                                    <label for="priority-low">Login normal</label>
+                                </div>
+                                <div class="3u 12u$(3)">
+                                    <input type="radio" id="priority-normal" name="priority">
+                                    <label for="priority-normal">Login admin</label>
+                                </div>
+                            </div>
+
+                            <div class="row uniform 50%">
+                                <!-- Break -->
+                                <div class="4u$ -4u align-center">
+                                    <ul class="actions">
+                                        <li><input type="submit" id="submit" name="_submit"
+                                                   value="{{ 'security.login.submit'|trans }}"/></li>
+                                        <li><input type="reset" value="Reset" class="alt"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="row uniform 50%">
+                                <div class="4u -4u align-center">
+                                    <a>Forget your password?</a>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        {% block footer %}
+            {{ parent() }}
+        {% endblock %}
     {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#header').attr('class', 'skel-layers-fixed');
+        });
+    </script>
+{% endblock %}

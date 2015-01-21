@@ -41,26 +41,6 @@ class TemplateController extends Controller
 
     /**
      * @Apidoc()
-     * @Route("/login")
-     * @Template()
-     */
-    public function loginAction()
-    {
-        return $this->render('SOSVeloTemplateBundle:Template:login.html.twig');
-    }
-
-    /**
-     * @Apidoc()
-     * @Route("/registration/register")
-     * @Template()
-     */
-    public function registerAction()
-    {
-        return $this->render('SOSVeloTemplateBundle:Template:register.html.twig');
-    }
-
-    /**
-     * @Apidoc()
      * @Route("/uc")
      * @Template()
      */
