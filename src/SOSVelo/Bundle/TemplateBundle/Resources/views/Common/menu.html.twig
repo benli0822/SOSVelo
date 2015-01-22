@@ -24,7 +24,7 @@
 
             <li>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                Connecté en tant que {{ app.user.username }} <br> <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                <a class="button">Welcome {{ app.user.username }}</a>  <a class="button" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
                 {% else %}
                 <a class="button" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             </li>
