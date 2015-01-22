@@ -23,57 +23,45 @@
                     <section class="box">
                         <h2 class="align-center">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</h2>
                         {% if error %}
-                            <div>{{ error|trans }}</div><br>
+                            <div class="error align-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div><br>
                         {% endif %}
-                        <form action="{{ path("fos_user_security_check") }}" method="post" id="login">
+                        <form action="{{ path("fos_user_security_check") }}" method="POST" id="login">
 
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
 
                             <div class="row uniform 50%">
                                 <div class="6u -3u">
-                                    <label for="username">{{ 'security.login.username'|trans }}</label>
-                                    <input type="text" name="username" id="username" value="{{ last_username }}"
-                                           required="required" placeholder="Username"/>
-                                </div>
-                            </div>
-                            <div class="row uniform 50%">
-                                <div class="6u -3u">
-                                    <label for="password">{{ 'security.login.password'|trans }}</label>
-                                    <input type="password" id="password" name="_password" required="required"/>
+                                    <fieldset id="inputs">
+                                        <label for="username">{{ 'security.login.username'|trans }}</label>
+                                        <input type="text" name="username" id="username" value="{{ last_username }}"
+                                               required="required" placeholder="Username"/>
+
+                                        <label for="password">{{ 'security.login.password'|trans }}</label>
+                                        <input type="password" id="password" name="_password" placeholder="Password"
+                                               required="required"/>
+                                    </fieldset>
                                 </div>
                             </div>
 
                             <div class="row uniform 50%">
-                                <!-- Break -->
-                                <div class="3u -3u">
-                                    <input type="radio" id="priority-low" name="priority" checked>
-                                    <label for="priority-low">Login normal</label>
-                                </div>
-                                <div class="3u 12u$(3)">
-                                    <input type="radio" id="priority-normal" name="priority">
-                                    <label for="priority-normal">Login admin</label>
-                                </div>
-                            </div>
-
-                            <div class="row uniform 50%">
-                                <!-- Break -->
                                 <div class="4u$ -4u align-center">
-                                    <ul class="actions">
-                                        <li><input type="submit" id="submit" name="_submit"
-                                                   value="{{ 'security.login.submit'|trans }}"/></li>
-                                        <li><input type="reset" value="Reset" class="alt"/></li>
-                                    </ul>
+                                    <fieldset id="actions">
+                                        <ul class="actions">
+                                            <li><input type="submit" id="submit" name="_submit"
+                                                       value="{{ 'security.login.submit'|trans }}"/></li>
+                                            <li><input type="reset" value="Reset" class="alt"/></li>
+                                        </ul>
+                                    </fieldset>
                                 </div>
                             </div>
-
-                            <div class="row uniform 50%">
-                                <div class="4u -4u align-center">
-                                    <a>Forget your password?</a>
-                                </div>
-                            </div>
-
 
                         </form>
+
+                        <div class="row uniform 50%">
+                            <div class="4u -4u align-center">
+                                <a>Forget your password?</a>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
