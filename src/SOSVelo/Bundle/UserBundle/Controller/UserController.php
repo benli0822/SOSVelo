@@ -196,4 +196,67 @@ class UserController extends Controller {
         return $response;
     }
 
+    /**
+     * Index of user center
+     *
+     * @ApiDoc()
+     * @Route("/uc")
+     * @Method({"GET"})
+     */
+    public function ucAction() {
+        return $this->render('SOSVeloUserBundle:UserCenter:uc.html.twig');
+    }
+
+    /**
+     * Display all point for a user
+     *
+     * @Apidoc()
+     * @Route("/uc/point")
+     * @Method({"GET"})
+     */
+    public function pointAction()
+    {
+        return $this->render('SOSVeloUserBundle:UserCenter:point.html.twig');
+    }
+
+    /**
+     * @Apidoc()
+     * @Route("/uc/friend")
+     * @Method({"GET"})
+     */
+    public function friendAction()
+    {
+        return $this->render('SOSVeloUserBundle:UserCenter:friend.html.twig');
+    }
+
+    /**
+     * @Apidoc()
+     * @Route("/uc/comment")
+     * @Method({"GET"})
+     */
+    public function commentAction()
+    {
+        return $this->render('SOSVeloUserBundle:UserCenter:comment.html.twig');
+    }
+
+    /**
+     * @Apidoc()
+     * @Route("/uc/contact")
+     * @Method({"GET"})
+     */
+    public function usercontactAction()
+    {
+        return $this->render('SOSVeloUserBundle:UserCenter:usercontact.html.twig');
+    }
+
+    /**
+     * @Apidoc()
+     * @Route("/uc/message")
+     * @Method({"GET"})
+     */
+    public function messageAction()
+    {
+        return $this->render('SOSVeloUserBundle:UserCenter:message.html.twig');
+    }
+
 }

@@ -28,3 +28,4 @@ security:
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/add_point, role: [ROLE_ADMIN, ROLE_TRADER]  }
+        - { path: ^/uc, role: [ROLE_ADMIN, ROLE_USER]}
