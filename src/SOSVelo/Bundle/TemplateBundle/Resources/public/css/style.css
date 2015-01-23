@@ -1232,6 +1232,7 @@
 	}
 		#banner #map {
 			color: #000;
+			border-radius: 6px;
 		}
 
 		#banner :last-child {
