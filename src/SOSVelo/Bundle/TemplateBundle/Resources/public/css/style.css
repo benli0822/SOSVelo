@@ -1233,6 +1233,8 @@
 		#banner #map {
 			color: #000;
 			border-radius: 6px;
+			margin: 0 20px 0 20px;
+			padding: 0 4px 0 4px
 		}
 
 		#banner :last-child {
