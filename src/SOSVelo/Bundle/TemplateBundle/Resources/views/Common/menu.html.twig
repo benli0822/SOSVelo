@@ -1,14 +1,14 @@
 <!-- Header -->
 <header id="header" class="alt">
-    <h1><a href="home">SOSVélo</a></h1>
+    <h1><a href="{{ path('sosvelo_home') }}"><img src="{{ asset('bundles/sosvelotemplate/img/sosvelo/sosvelo_logo.png') }}"/></a></h1>
     <nav id="nav">
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{ path('sosvelo_home') }}">Home</a></li>
             <li>
                 <a href="" class="icon fa-angle-down">More</a>
                 <ul>
-                    <li><a href="generic.html">Generic</a></li>
-                    <li><a href="contact">Contact</a></li>
+                    <li><a href="{{ path('sosvelo_template_template_generic') }}">Generic</a></li>
+                    <li><a href="{{ path('sosvelo_template_template_contact') }}">Contact</a></li>
                     <!--<li><a href="elements.html">Elements</a></li>-->
                     <!--<li>-->
                     <!--<a href="">Submenu</a>-->
@@ -21,8 +21,19 @@
                     <!--</li>-->
                 </ul>
             </li>
-            <li><a href="login.html" class="button">Login</a></li>
-            <li><a href="#" class="button">Sign Up</a></li>
+
+            <li>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a class="button" href="{{ path('sosvelo_user_user_uc') }}">Welcome {{ app.user.username }}</a>  <a class="button" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                {% else %}
+                <a class="button" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            </li>
+
+            <li>
+                <a class="button" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+            </li>
+            {% endif %}
+
         </ul>
     </nav>
 </header>

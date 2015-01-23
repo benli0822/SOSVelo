@@ -57,5 +57,3 @@ sosvelo_add_point:
     defaults: { _controller: SOSVeloPointBundle:Point:add_point }
     requirements:
         _method:  GET|POST
-
-

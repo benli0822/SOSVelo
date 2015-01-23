@@ -1,0 +1,45 @@
+{# SOSVelo/Bundle/TemplateBundle/Resources/views/layout_uc.html.twig #}
+
+{% extends '@SOSVeloTemplate/layout.html.twig' %}
+
+{% block stylesheets %}
+    {% stylesheets '@SOSVeloTemplateBundle/Resources/public/css/jquery.navgoco.css' output='css/jquery.navgoco.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"></link>
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    {% block menu %}
+        {{ include('SOSVeloTemplateBundle:Common:menu.html.twig') }}
+    {% endblock %}
+    <!-- Main -->
+    <section id="main" class="container">
+        <div class="row 0%">
+            {% block uc_menu %}
+                {{ include('SOSVeloUserBundle:Common:uc_menu.html.twig') }}
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+
+            {% block cta %}
+            {% endblock %}
+
+        </div>
+    </section>
+    {% block footer %}
+        {{ include('SOSVeloTemplateBundle:Common:footer.html.twig') }}
+    {% endblock %}
+{% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#header').attr('class', 'skel-layers-fixed');
+                $('.nav').navgoco();
+            });
+        </script>
+
+    {% endblock %}

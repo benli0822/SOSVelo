@@ -1222,14 +1222,17 @@
 	#banner {
 		background-attachment: scroll,							fixed;
 		background-color: #666;
-		background-image: url("images/overlay.png"), url("../images/banner.jpg");
+		background-image: url("images/overlay.png"), url("../img/banner.jpg");
 		background-position: top left,						center center;
 		background-repeat: repeat,							no-repeat;
 		background-size: auto,							cover;
-		color: #fff;
+		color: #000;
 		padding: 12em 0 20em 0;
 		text-align: center;
 	}
+		#banner #map {
+			color: #000;
+		}
 
 		#banner :last-child {
 			margin-bottom: 0;
@@ -1247,6 +1250,7 @@
 		}
 
 		#banner p {
+			color: #fff;
 			font-size: 1.25em;
 			margin-bottom: 1.75em;
 		}
