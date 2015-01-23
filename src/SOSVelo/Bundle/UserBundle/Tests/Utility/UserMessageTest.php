@@ -44,13 +44,13 @@ class UserMessageTest extends KernelTestCase{
     public function testFailure()
     {
 
-        $user1 = $this->em
-            ->getRepository('SOSVeloUserBundle:User')
-            ->findByUsername('admin')
-        ;
-        $user2 = $this->em
-            ->getRepository('SOSVeloUserBundle:User')
-            ->findByUsername('user')
+//        $user1 = $this->em
+//            ->getRepository('SOSVeloUserBundle:User')
+//            ->findByUsername('admin')
+//        ;
+//        $user2 = $this->em
+//            ->getRepository('SOSVeloUserBundle:User')
+//            ->findByUsername('user')
         ;
         $user2 = $this->userManager->findUserByUsername('user');
         $user1 = $this->userManager->findUserByUsername('admin');
