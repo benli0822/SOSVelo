@@ -216,7 +216,13 @@ class UserController extends Controller {
      */
     public function pointAction()
     {
-        return $this->render('SOSVeloUserBundle:UserCenter:point.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+        $user  = $this->get('security.context')->getToken()->getUser();
+        $point = $em->getRepository('SOSVeloPointBundle:Point')->findOneByUser($user->getID());
+        return $this->render('SOSVeloUserBundle:UserCenter:point.html.twig',array(
+            'point' => $point
+        ));
     }
 
     /**

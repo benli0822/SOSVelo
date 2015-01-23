@@ -74,10 +74,14 @@ class Point
     private $activated;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SOSVelo\Bundle\PointBundle\Entity\Point", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="SOSVelo\Bundle\PointBundle\Entity\PointComment", cascade={"persist"})
      */
     private $comments;
 
+    /**
+     * @ORM\OneToOne(targetEntity="SOSVelo\Bundle\UserBundle\Entity\User", cascade={"persist"})
+     */
+    private $user;
     /**
      * Get id
      *
@@ -271,5 +275,30 @@ class Point
     public function getComments()
     {
         return $this->comments;
+    }
+
+
+
+    /**
+     * Set user
+     *
+     * @param \SOSVelo\Bundle\UserBundle\Entity\User $user
+     * @return Point
+     */
+    public function setUser(\SOSVelo\Bundle\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \SOSVelo\Bundle\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
