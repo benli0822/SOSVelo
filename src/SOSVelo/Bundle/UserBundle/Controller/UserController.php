@@ -220,8 +220,46 @@ class UserController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $user  = $this->get('security.context')->getToken()->getUser();
         $point = $em->getRepository('SOSVeloPointBundle:Point')->findOneByUser($user->getID());
+        $listPointService = $em->getRepository('SOSVeloPointBundle:PointService')->findAll();
+
+        foreach($point->getServices() as $key1 => $service){
+//            if($listPointService->contains($service)){
+//                $listPointService->remove($service);
+//            }
+            foreach($listPointService as $key2 => $PService) {
+                if ($PService->getName() == $service->getName()) {
+                    unset($listPointService[$key2]);
+                }
+            }
+//                }
+        }
+
+//        // On boucle sur les catégories de l'annonce pour les supprimer
+//        for($i = 0 ; $i < count($point->getServices()); $i++)
+//        {
+//
+//            $PService = $point->getServices()[$i];
+//
+//            for($j = 0 ; $j < count($listPointService ) ; $j++)
+//            {
+//                $Service = $listPointService[$j];
+//
+////                \Doctrine\Common\Util\Debug::dump($Service->getName());
+////                \Doctrine\Common\Util\Debug::dump($j);
+////                \Doctrine\Common\Util\Debug::dump($PService->getName() == $Service->getName());
+////                die();
+//
+//                if($PService->getName() == $Service->getName()){
+//                    //$listPointService->removeElement($Service);
+//                    $listPointService = array_values($listPointService);
+//                    unset($listPointService[$j]);
+//                }
+//            }
+//        }
+
         return $this->render('SOSVeloUserBundle:UserCenter:point.html.twig',array(
-            'point' => $point
+            'point' => $point,
+            'allService' => $listPointService
         ));
     }
 
