@@ -5,6 +5,8 @@ namespace SOSVelo\Bundle\PointBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use SOSVelo\Bundle\PointBundle\Entity\Point;
+use SOSVelo\Bundle\PointBundle\Entity\PointService;
+
 
 class LoadPointData implements FixtureInterface
 {
@@ -256,6 +258,28 @@ class LoadPointData implements FixtureInterface
         $point17->setActivated(true);
 
         $manager->persist($point17);
+        $manager->flush();
+
+
+        //ajouter les services
+        $names = array(
+            'Huile',
+            'Outils',
+            'Rustines',
+            'Pompe',
+            'Autres',
+        );
+
+        foreach ($names as $name) {
+            // On crée la catégorie
+            $service = new PointService();
+            $service->setName($name);
+            $service->setDescription($name);
+            // On la persiste
+            $manager->persist($service);
+        }
+
+        // On déclenche l'enregistrement de toutes les catégories
         $manager->flush();
     }
 }

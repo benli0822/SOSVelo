@@ -1,0 +1,1 @@
+[30;46mCareful, database will be purged. Do you want to continue Y/N ?[39;49m

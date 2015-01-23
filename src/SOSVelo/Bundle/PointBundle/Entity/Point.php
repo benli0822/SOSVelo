@@ -82,6 +82,15 @@ class Point
      * @ORM\OneToOne(targetEntity="SOSVelo\Bundle\UserBundle\Entity\User", cascade={"persist"})
      */
     private $user;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="SOSVelo\Bundle\PointBundle\Entity\PointService", cascade={"persist"})
+     */
+    private $services;
+
+
+
     /**
      * Get id
      *
@@ -300,5 +309,45 @@ class Point
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->services = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add services
+     *
+     * @param \SOSVelo\Bundle\PointBundle\Entity\PointService $services
+     * @return Point
+     */
+    public function addService(\SOSVelo\Bundle\PointBundle\Entity\PointService $services)
+    {
+        $this->services[] = $services;
+
+        return $this;
+    }
+
+    /**
+     * Remove services
+     *
+     * @param \SOSVelo\Bundle\PointBundle\Entity\PointService $services
+     */
+    public function removeService(\SOSVelo\Bundle\PointBundle\Entity\PointService $services)
+    {
+        $this->services->removeElement($services);
+    }
+
+    /**
+     * Get services
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getServices()
+    {
+        return $this->services;
     }
 }
