@@ -48,11 +48,11 @@
         }
 
         #owl-slider a .item h1 {
-            color: #ffffff;
+            color: #000000;
         }
 
-        #owl-slider .item:hover, #owl-slider:focus, #owl-slider:active {
-            background: none;
+        #owl-slider .item:hover, #owl-slider .item:focus, #owl-slider .item:active {
+            background: #ffffff;
         }
 
         /*slider bar style*/
@@ -67,8 +67,8 @@
         }
 
         #tabs-1, #tabs-2, #tabs-3, #tabs-4 {
-            padding: 0 4px 0 4px;
-            margin: 0 20px 0 20px;
+            padding: 0 4px 0 0;
+            margin: 0 20px 0 0;
         }
 
         #tabs-1 > li {
@@ -193,21 +193,21 @@
         {{ parent() }}
     {% endblock %}
     <!-- Banner -->
-    <section id="banner" style="padding-top: 10px;">
+    <section id="banner">
         <h2>SOSVélo</h2>
 
-        <p>Vous trouvez ici toutes les informations de points SOSVélo</p>
+        <p>Finding your appropriate service point at SOSVélo</p>
 
         <form>
             <div class="row uniform 50%">
                 <div class="7u -1u 12u(3)">
-                    <input type="text" name="search" id="search" placeholder="Rechercher votre point"/>
+                    <input type="text" name="search" id="search" placeholder="Search your point"/>
                 </div>
                 <div class="1u 12(3)">
                     <select name="type" id="type">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                        <option>Name</option>
+                        <option>Service Type</option>
+                        <option>Address</option>
                     </select>
                 </div>
                 <div class="1u 2u(3) align-center">
@@ -261,6 +261,9 @@
                             <h3>Loading</h3>
                         </div>
 
+
+                        <button onclick="nearest()">Nearest</button>
+
                         <div class="slider-dev" style="display: none;">
                             <div id="route-narrative"></div>
                         </div>
@@ -289,7 +292,7 @@
 
             <div class="12u -1u 10u$ ">
                 <div id="owl-slider" class="owl-carousel owl-theme">
-                    <a href="www.google.fr">
+                    <a href="">
                         <div class="item">
                             <h1>Name: <span>abc</span></h1>
 
@@ -318,8 +321,8 @@
 
         <br/>
         <ul class="actions">
-            <li><a href="#" class="button special">Sign Up</a></li>
-            <li><a href="#" class="button">Learn More</a></li>
+            <li><a href="{{ path("fos_user_registration_register") }}" class="button special">Sign Up</a></li>
+            <li><a href="{{ path("sosvelo_template_template_generic") }}" class="button">Learn More</a></li>
         </ul>
     </section>
 
@@ -341,7 +344,12 @@
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
     <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
+    <script src="//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.js"></script>
     <script src="{{ path("sosvelo_point_point_getgeojsonpoints") }}"></script>
+
+    {% javascripts '@SOSVeloTemplateBundle/Resources/public/js/owl.carousel.min.js' output='js/owl.carousel.min.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -378,15 +386,6 @@
             });
         });
 
-    </script>
-
-    {% javascripts '@SOSVeloTemplateBundle/Resources/public/js/owl.carousel.min.js' output='js/owl.carousel.min.js' %}
-    <script src="{{ asset_url }}" type="text/javascript"></script>
-    {% endjavascripts %}
-
-    <script src="//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.js"></script>
-
-    <script type="text/javascript">
         var lat_1;
         var lng_1;
         var layer;
@@ -412,6 +411,7 @@
                 lng_1 = position.coords.longitude;
 
                 show_points(lat_1, lng_1);
+                sort_points(lat_1, lng_1);
             });
 
             //geolocation
@@ -433,6 +433,20 @@
         } else {
             alert("Géolocalisation n'est pas supportée par votre navigateur. :(");
         }
+
+        // sort point by distance to current position
+        var sortRes = [];
+        function sort_points(lat_1, lng_1) {
+            // sort by distance to current position
+            sortRes.sort(function (d1, d2) {
+                return d1.distance == d2.distance ? 0 :
+                        d1.distance > d2.distance ? 1 : -1;
+            });
+            console.log(sortRes);
+
+            // display as carousel
+        }
+        // end sort_points
 
         //points show_points
         function show_points(lat_1, lng_1) {
@@ -459,6 +473,19 @@
                         nearest_lat = latLng.lat;
                         nearest_lng = latLng.lng;
                     }
+
+                    // push record to list for sorting
+                    var record = {
+                        'feature': feature,
+                        'lat': latLng.lat,
+                        'lng': latLng.lng,
+                        'distance': latLng.distanceTo({
+                            lat: lat_1,
+                            lng: lng_1
+                        })
+                    };
+                    sortRes.push(record);
+
                     if (latLng.distanceTo({
                                 lat: lat_1,
                                 lng: lng_1
@@ -571,21 +598,11 @@
         map.on("popupopen", function (e) {
             var marker = e.popup._source;
             if (typeof marker['feature'] !== 'undefined') {
-                console.log(marker);
                 $("#slider-info").text(marker['feature']['properties']['name']);
                 $("#slider-add").text(marker['feature']['properties']['adress']);
                 $("#slider-hour").text(marker['feature']['properties']['description']);
             }
         });
-
-        function onMapClick(e) {
-            popup
-                    .setLatLng(e.latlng)
-                    .setContent("You clicked the map at " + e.latlng.toString())
-                    .openOn(map);
-        }
-
-        map.on('click', onMapClick);
 
         // responsive design for map, resize the map according to the current window's size
         $(window).on("resize", function () {
