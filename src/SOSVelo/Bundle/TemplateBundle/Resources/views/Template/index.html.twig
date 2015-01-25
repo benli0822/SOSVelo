@@ -18,6 +18,14 @@
     <![endif]-->
 
     <style>
+        .left {
+            text-align: left;
+        }
+
+        .right {
+            text-align: right;
+        }
+
         /*slider bar style*/
         #tabs-1, #tabs-1 ul, #tabs-1 li {
             list-style: none;
@@ -230,7 +238,7 @@
                             <h3>Loading</h3>
                         </div>
 
-                        <ol id="nearest" data-role="listview" data-inset="true">
+                        <ol id="nearest">
                         </ol>
 
                     </div>
@@ -374,8 +382,16 @@
             // display as carousel
             for (var i = 0; i < 5; i++) {
                 var $newli = $("<li></li>");
-                var $newa = $("<a href=''>Name: " + sortRes[i]['feature']['properties']['name'] + "<br/>Address: " + sortRes[i]['feature']['properties']['adress'] + "</a>");
+                var $newa = $("<a href=''></a>");
+                var $newdiv = $("<div class='row uniform 50%'></div>");
+                var $newinfo = $("<div class='8u 12u(2)'>" +
+                sortRes[i]['feature']['properties']['name'] + "<br/><h6>" + sortRes[i]['feature']['properties']['adress'] +
+                "</h6></div>");
+                var $newdist = $("<div class='4u 12u(2)'><h5>" + (sortRes[i]['distance']/1000).toFixed(2) + " km</h5></div>");
 
+                $newdiv.append($newinfo);
+                $newdiv.append($newdist);
+                $newa.append($newdiv);
                 $newli.append($newa);
                 $("#nearest").append($newli);
             }
@@ -541,7 +557,7 @@
 
         // responsive design for map, resize the map according to the current window's size
         $(window).on("resize", function () {
-            $("#map").height($(window).height() / 2.2).width($(this).parent().width());
+            $("#map").height($(window).height() / 1.5).width($(this).parent().width());
 //            map.invalidateSize();
             $("#route-narrative").height($(window).height() / 3).width($(this).parent().width());
         }).trigger("resize");
