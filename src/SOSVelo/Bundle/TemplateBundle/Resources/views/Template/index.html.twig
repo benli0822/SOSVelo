@@ -5,13 +5,9 @@
 {% block title %}SOSVelo !{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    {#<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.css">#}
 
-    {% stylesheets
-    '@SOSVeloTemplateBundle/Resources/public/css/owl.carousel.min.css'
-    '@SOSVeloTemplateBundle/Resources/public/css/owl.theme.default.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet"
@@ -22,43 +18,14 @@
     <![endif]-->
 
     <style>
-        /*demo item for carousel*/
-        #owl-slider .item {
-            background: #42bdc2;
-            padding: 30px 0px;
-            margin: 20px;
-            color: #FFF;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            border-radius: 6px;
-            text-align: center;
-
-            vertical-align: middle;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-transition-duration: 0.3s;
-            transition-duration: 0.3s;
-            -webkit-transition-property: background;
-            transition-property: background;
-            box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px rgba(0, 0, 0, 0);
-        }
-
-        #owl-slider a .item h1 {
-            color: #000000;
-        }
-
-        #owl-slider .item:hover, #owl-slider .item:focus, #owl-slider .item:active {
-            background: #ffffff;
-        }
-
         /*slider bar style*/
         #tabs-1, #tabs-1 ul, #tabs-1 li {
             list-style: none;
             display: inline;
+        }
+
+        #tabs-1 ol, #tabs-1 ol li {
+            display: block;
         }
 
         #tabs-1 ul {
@@ -77,6 +44,31 @@
 
         #tabs-1 > li li {
             margin: 2px 0;
+        }
+
+        #tabs-1 ol li {
+            color: #333;
+            outline: none;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 255);
+            border-radius: 6px;
+            margin: 4px 0 4px 0
+        }
+
+        #tabs-1 ol li:hover, #tabs-1 ol li.active > a {
+            background-color: #5D5D5D;
+            color: #f5f5f5;
+        }
+
+        #tabs-1 ol li a {
+            border: none;
+        }
+
+        #tabs-1 ol li a:hover, #tabs-1 ol li.active > a {
+            background-color: transparent;
+            color: #f5f5f5;
         }
 
         #tabs-1 a {
@@ -238,17 +230,9 @@
                             <h3>Loading</h3>
                         </div>
 
-                        <div class="slider-dev" style="display: none;">
-                            <h5>Point name:</h5>
+                        <ol id="nearest" data-role="listview" data-inset="true">
+                        </ol>
 
-                            <p id="slider-info"></p>
-                            <h5>Address:</h5>
-
-                            <p id="slider-add"></p>
-                            <h5>Infos:</h5>
-
-                            <p id="slider-hour"></p>
-                        </div>
                     </div>
                     <div id="tabs-3">
                         <br/>
@@ -289,34 +273,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="12u -1u 10u$ ">
-                <div id="owl-slider" class="owl-carousel owl-theme">
-                    <a href="">
-                        <div class="item">
-                            <h1>Name: <span>abc</span></h1>
-
-                            <h1>Address: <span>abc</span></h1>
-                        </div>
-                    </a>
-
-                    <div class="item"><h1>2</h1></div>
-                    <div class="item"><h1>3</h1></div>
-                    <div class="item"><h1>4</h1></div>
-                    <div class="item"><h1>5</h1></div>
-                    <div class="item"><h1>6</h1></div>
-                    <div class="item"><h1>7</h1></div>
-                    <div class="item"><h1>8</h1></div>
-                    <div class="item"><h1>9</h1></div>
-                    <div class="item"><h1>10</h1></div>
-                    <div class="item"><h1>11</h1></div>
-                    <div class="item"><h1>12</h1></div>
-                    <div class="item"><h1>13</h1></div>
-                    <div class="item"><h1>14</h1></div>
-                    <div class="item"><h1>15</h1></div>
-                    <div class="item"><h1>16</h1></div>
-                </div>
-            </div>
         </div>
 
         <br/>
@@ -341,15 +297,12 @@
     {{ parent() }}
 
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    {#<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>#}
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
     <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
     <script src="//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.js"></script>
     <script src="{{ path("sosvelo_point_point_getgeojsonpoints") }}"></script>
-
-    {% javascripts '@SOSVeloTemplateBundle/Resources/public/js/owl.carousel.min.js' output='js/owl.carousel.min.js' %}
-    <script src="{{ asset_url }}" type="text/javascript"></script>
-    {% endjavascripts %}
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -358,32 +311,6 @@
             $("#tabs-1").tabs();
 
             $("#route-narrative").scroll();
-
-            $("#owl-slider").owlCarousel({
-                loop: true,
-                margin: 10,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 1,
-                        nav: true
-                    },
-                    600: {
-                        items: 3,
-                        nav: false
-                    },
-                    1000: {
-                        items: 5,
-                        nav: true,
-                        loop: false
-                    }
-                }
-//                items: 6, //10 items above 1000px browser width
-//                itemsDesktop: [1000, 5], //5 items between 1000px and 901px
-//                itemsDesktopSmall: [900, 3], // betweem 900px and 601px
-//                itemsTablet: [600, 2], //2 items between 600 and 0
-//                itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
-            });
         });
 
         var lat_1;
@@ -445,6 +372,14 @@
             console.log(sortRes);
 
             // display as carousel
+            for (var i = 0; i < 5; i++) {
+                var $newli = $("<li></li>");
+                var $newa = $("<a href=''>Name: " + sortRes[i]['feature']['properties']['name'] + "<br/>Address: " + sortRes[i]['feature']['properties']['adress'] + "</a>");
+
+                $newli.append($newa);
+                $("#nearest").append($newli);
+            }
+//            $("#nearest").listview('refresh');
         }
         // end sort_points
 
