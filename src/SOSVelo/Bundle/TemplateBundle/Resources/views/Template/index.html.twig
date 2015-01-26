@@ -25,28 +25,32 @@
             display: block;
         }
 
-        .nearest ol {
+        #tabs-1, #tabs-1 ul, #tabs-1 li {
+            display: inline;
+        }
+
+        .nearest ol, #tabs-1 ol {
             padding: 0;
         }
 
-        .nearest ul {
+        .nearest ul, #tabs-1 ul {
             padding: 0;
         }
 
-        .nearest, #tabs-2, #tabs-3, #tabs-4 {
+        .nearest, #tabs-1, #tabs-2, #tabs-3, #tabs-4 {
             padding: 0 4px 0 0;
             margin: 0 20px 0 0;
         }
 
-        .nearest > li {
+        .nearest > li, #tabs-1 > li {
             margin: 4px 0;
         }
 
-        .nearest > li li {
+        .nearest > li li, #tabs-1 > li li {
             margin: 2px 0;
         }
 
-        .nearest ol li {
+        .nearest ol li, #tabs-1 ol li {
             color: #333;
             outline: none;
             -webkit-border-radius: 4px;
@@ -57,21 +61,21 @@
             margin: 4px 0 4px 0
         }
 
-        .nearest ol li:hover, .nearest ol li.active > a {
+        .nearest ol li:hover, .nearest ol li.active > a, #tabs-1 ol li:hover, #tabs-1 ol li.active > a {
             background-color: #5D5D5D;
             color: #f5f5f5;
         }
 
-        .nearest ol li a {
+        .nearest ol li a, #tabs-1 ol li a {
             border: none;
         }
 
-        .nearest ol li a:hover, .nearest ol li.active > a {
+        .nearest ol li a:hover, .nearest ol li.active > a, #tabs-1 ol li a:hover, #tabs-1 ol li.active > a {
             background-color: transparent;
             color: #f5f5f5;
         }
 
-        .nearest a {
+        .nearest a, #tabs-1 a {
             color: #333;
             outline: none;
             -webkit-border-radius: 4px;
@@ -81,41 +85,41 @@
             border-radius: 6px
         }
 
-        .nearest li > a > span {
+        .nearest li > a > span, #tabs-1 li > a > span {
             float: right;
             font-size: 19px;
             font-weight: bolder;
         }
 
-        .nearest li > a:hover > span {
+        .nearest li > a:hover > span, #tabs-1 li > a:hover > span {
             color: #fff;
         }
 
-        .nearest li > a > span:after {
+        .nearest li > a > span:after, #tabs-1 li > a > span:after {
             content: '\25be';
         }
 
-        .nearest li.open > a > span:after {
+        .nearest li.open > a > span:after, #tabs-1 li.open > a > span:after {
             content: '\25b4';
         }
 
-        .nearest a:hover, .nearest li.active > a {
+        .nearest a:hover, .nearest li.active > a, #tabs-1 a:hover, #tabs-1 li.active > a {
             background-color: #5D5D5D;
             color: #f5f5f5;
         }
 
-        .nearest > li.active > a {
+        .nearest > li.active > a, #tabs-1 > li.active > a {
             background-color: #4D90FE;
         }
 
-        .nearest li a {
+        .nearest li a, #tabs-1 li a {
             color: #ffffff;
             font-size: 20px;
             line-height: 18px;
             padding: 2px 10px;
         }
 
-        .nearest > li > a {
+        .nearest > li > a, #tabs-1 > li > a {
             font-size: 14px;
             line-height: 20px;
             padding: 4px 10px;
@@ -228,59 +232,51 @@
                     </ol>
 
                     <div class="route" style="display: none;">
-                        <div id="route-narrative"></div>
+
+                        <div id="tabs-1">
+                            <ul>
+                                <li><a href="#tabs-2">Route</a></li>
+                                <li><a href="#tabs-3">Comments</a></li>
+                            </ul>
+                            <div id="tabs-2">
+                                <br/>
+
+                                <div class="loading">
+                                    <div class="sk-spinner sk-spinner-wordpress">
+                                        <span class="sk-inner-circle"></span>
+                                    </div>
+
+                                    <h3>Loading</h3>
+                                </div>
+
+                                <div id="route-narrative"></div>
+
+                            </div>
+                            <div id="tabs-3">
+
+                                <div class="loading">
+                                    <div class="sk-spinner sk-spinner-wordpress">
+                                        <span class="sk-inner-circle"></span>
+                                    </div>
+
+                                    <h3>Loading</h3>
+                                </div>
+
+                                <div class="slider-dev">
+                                    <div>
+                                        {% if currentPath in "home" %}
+                                            {% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : currentPath } %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <a class="button" id="return">Return</a>
                     </div>
                 </div>
 
-                {#<div id="tabs-1">#}
-                {#<ul>#}
-                {#<li><a href="#tabs-2">Information</a></li>#}
-                {#<li><a href="#tabs-3">Route</a></li>#}
-                {#<li><a href="#tabs-4">Comments</a></li>#}
-                {#</ul>#}
-                {#<div id="tabs-2">#}
-                {#<br/>#}
 
-                {#</div>#}
-                {#<div id="tabs-3">#}
-                {#<br/>#}
-
-                {#<div class="loading">#}
-                {#<div class="sk-spinner sk-spinner-wordpress">#}
-                {#<span class="sk-inner-circle"></span>#}
-                {#</div>#}
-
-                {#<h3>Loading</h3>#}
-                {#</div>#}
-
-
-                {#<button onclick="nearest()">Nearest</button>#}
-
-                {#<div class="slider-dev" style="display: none;">#}
-                {#<div id="route-narrative"></div>#}
-                {#</div>#}
-
-                {#</div>#}
-                {#<div id="tabs-4">#}
-
-                {#<div class="loading">#}
-                {#<div class="sk-spinner sk-spinner-wordpress">#}
-                {#<span class="sk-inner-circle"></span>#}
-                {#</div>#}
-
-                {#<h3>Loading</h3>#}
-                {#</div>#}
-
-                {#<div class="slider-dev" style="display: none;">#}
-                {#<div>#}
-                {#{% if currentPath in "home" %}#}
-                {#{% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : currentPath } %}#}
-                {#{% endif %}#}
-                {#</div>#}
-                {#</div>#}
-                {#</div>#}
-                {#</div>#}
             </div>
         </div>
 
@@ -317,7 +313,7 @@
         $(document).ready(function () {
             $('body').attr('class', 'landing');
 
-//            $("#tabs-1").tabs();
+            $("#tabs-1").tabs();
 
             $("#route-narrative").scroll();
 
@@ -333,6 +329,7 @@
         var layer;
         var nearest_lat = lat_1;
         var nearest_lng = lng_1;
+        var markers = [];
         //init_map
         var map = L.map('map', {
             layers: MQ.mapLayer()
@@ -361,8 +358,9 @@
             function onLocationFound(e) {
                 var radius = e.accuracy / 2;
 
-                L.marker(e.latlng).addTo(map)
-                        .bindPopup("Vous êtes dans un rayon de " + radius + " mèters de ce point.").openPopup();
+                L.marker(e.latlng, {
+                    title: "location"
+                }).addTo(map).bindPopup("Vous êtes dans un rayon de " + radius + " mèters de ce point.").openPopup();
 
                 L.circle(e.latlng, radius).addTo(map);
 
@@ -390,7 +388,8 @@
             for (var i = 0; i < 5; i++) {
                 var $newli = $("<li></li>");
                 var $newa = $("<a href='javascript:void(0)' " +
-                "onclick='route(" + lat_1 + "," + lng_1 + "," + sortRes[i]['lat'] + "," + sortRes[i]['lng'] + ")'></a>");
+                "onclick='route(" + lat_1 + "," + lng_1 + "," + sortRes[i]['lat'] + "," + sortRes[i]['lng'] + ")'" +
+                "id='" + sortRes[i]['feature']['properties']['name'] + "'></a>");
                 var $newdiv = $("<div class='row uniform 50%'></div>");
                 var $newinfo = $("<div class='8u 12u(2)'>" +
                 sortRes[i]['feature']['properties']['name'] + "<br/><h6>" + sortRes[i]['feature']['properties']['adress'] +
@@ -454,30 +453,49 @@
                     }
                     {% if is_granted('ROLE_ADMIN') %}
                     if (feature.properties.activated) {
-                        return L.marker(latLng, {
+                        var marker = L.marker(latLng, {
                             icon: SOSVeloIcon
                         }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a><span class='space_80px'/><a href='#' onClick='deletePoint(" + feature.properties.id + ")'>Supprimer ce point.</a>");
+                        markers.push(marker);
+                        return marker;
                     }
                     else {
-                        return L.marker(latLng, {
-                            icon: redIcon
+                        var marker = L.marker(latLng, {
+                            icon: redIcon,
+                            title: feature.properties.name
                         }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='activatePoint(" + feature.properties.id + ")'>Activer ce point.</a><span class='space_80px'/><a href='#' onClick='deletePoint(" + feature.properties.id + ")'>Supprimer ce point.</a>");
+                        markers.push(marker);
+                        return marker;
                     }
                     {% else %}
                     if (feature.properties.activated) {
-//                        document.getElementById("slider-info").innerHTML = "SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a>";
-                        return L.marker(latLng, {
+                        var marker = L.marker(latLng, {
                             icon: SOSVeloIcon
                         }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a>");
+                        markers.push(marker);
+                        return marker;
                     }
                     else {
-                        return L.marker(latLng, {icon: divIcon});
+                        var marker = L.marker(latLng, {icon: divIcon});
+                        markers.push(marker);
+                        return marker;
                     }
                     {% endif %}
                 }
             }).addTo(map);
         }
         //end of show_points
+
+        //marker function to open the corresponding popup
+        function markerFunction(id) {
+            for (var i in markers) {
+                var markerID = markers[i].options.title;
+                if (markerID == id) {
+                    console.log(markers[i]);
+                    markers[i].openPopup();
+                }
+            }
+        }
 
         //route
         function route(lat_1, lng_1, lat_2, lng_2) {
@@ -519,6 +537,11 @@
 
             $("#nearest").hide();
             $(".route").show();
+            // open the corresponding popup
+//            $("a").click(function () {
+//                console.log($(this)[0].id);
+//                markerFunction($(this)[0].id);
+//            });
             $("#route-narrative").show("slide", {direction: "left"}, 1500);
         }
         //end of route
@@ -555,17 +578,6 @@
                 }
             });
         }
-        //end activatePoint
-        var popup = L.popup();
-
-        map.on("popupopen", function (e) {
-            var marker = e.popup._source;
-            if (typeof marker['feature'] !== 'undefined') {
-                $("#slider-info").text(marker['feature']['properties']['name']);
-                $("#slider-add").text(marker['feature']['properties']['adress']);
-                $("#slider-hour").text(marker['feature']['properties']['description']);
-            }
-        });
 
         // responsive design for map, resize the map according to the current window's size
         $(window).on("resize", function () {
