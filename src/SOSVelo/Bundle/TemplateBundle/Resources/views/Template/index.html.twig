@@ -18,43 +18,35 @@
     <![endif]-->
 
     <style>
-        .left {
-            text-align: left;
-        }
-
-        .right {
-            text-align: right;
-        }
 
         /*slider bar style*/
-        #tabs-1, #tabs-1 ul, #tabs-1 li {
+        .nearest, .nearest ul, .nearest li {
             list-style: none;
-            display: inline;
-        }
-
-        #tabs-1 ol, #tabs-1 ol li {
             display: block;
         }
 
-        #tabs-1 ul {
+        .nearest ol {
             padding: 0;
-            margin: 0 0 0 18px;
         }
 
-        #tabs-1, #tabs-2, #tabs-3, #tabs-4 {
+        .nearest ul {
+            padding: 0;
+        }
+
+        .nearest, #tabs-2, #tabs-3, #tabs-4 {
             padding: 0 4px 0 0;
             margin: 0 20px 0 0;
         }
 
-        #tabs-1 > li {
+        .nearest > li {
             margin: 4px 0;
         }
 
-        #tabs-1 > li li {
+        .nearest > li li {
             margin: 2px 0;
         }
 
-        #tabs-1 ol li {
+        .nearest ol li {
             color: #333;
             outline: none;
             -webkit-border-radius: 4px;
@@ -65,21 +57,21 @@
             margin: 4px 0 4px 0
         }
 
-        #tabs-1 ol li:hover, #tabs-1 ol li.active > a {
+        .nearest ol li:hover, .nearest ol li.active > a {
             background-color: #5D5D5D;
             color: #f5f5f5;
         }
 
-        #tabs-1 ol li a {
+        .nearest ol li a {
             border: none;
         }
 
-        #tabs-1 ol li a:hover, #tabs-1 ol li.active > a {
+        .nearest ol li a:hover, .nearest ol li.active > a {
             background-color: transparent;
             color: #f5f5f5;
         }
 
-        #tabs-1 a {
+        .nearest a {
             color: #333;
             outline: none;
             -webkit-border-radius: 4px;
@@ -89,41 +81,41 @@
             border-radius: 6px
         }
 
-        #tabs-1 li > a > span {
+        .nearest li > a > span {
             float: right;
             font-size: 19px;
             font-weight: bolder;
         }
 
-        #tabs-1 li > a:hover > span {
+        .nearest li > a:hover > span {
             color: #fff;
         }
 
-        #tabs-1 li > a > span:after {
+        .nearest li > a > span:after {
             content: '\25be';
         }
 
-        #tabs-1 li.open > a > span:after {
+        .nearest li.open > a > span:after {
             content: '\25b4';
         }
 
-        #tabs-1 a:hover, #tabs-1 li.active > a {
+        .nearest a:hover, .nearest li.active > a {
             background-color: #5D5D5D;
             color: #f5f5f5;
         }
 
-        #tabs-1 > li.active > a {
+        .nearest > li.active > a {
             background-color: #4D90FE;
         }
 
-        #tabs-1 li a {
+        .nearest li a {
             color: #ffffff;
             font-size: 20px;
             line-height: 18px;
             padding: 2px 10px;
         }
 
-        #tabs-1 > li > a {
+        .nearest > li > a {
             font-size: 14px;
             line-height: 20px;
             padding: 4px 10px;
@@ -221,65 +213,74 @@
                 <div id="map" class="map"></div>
             </div>
             <div class="4u 12u(2)">
-                <div id="tabs-1">
-                    <ul>
-                        <li><a href="#tabs-2">Information</a></li>
-                        <li><a href="#tabs-3">Route</a></li>
-                        <li><a href="#tabs-4">Comments</a></li>
-                    </ul>
-                    <div id="tabs-2">
-                        <br/>
 
-                        <div class="loading">
-                            <div class="sk-spinner sk-spinner-wordpress">
-                                <span class="sk-inner-circle"></span>
-                            </div>
 
-                            <h3>Loading</h3>
+                <div class="nearest">
+                    <div class="loading">
+                        <div class="sk-spinner sk-spinner-wordpress">
+                            <span class="sk-inner-circle"></span>
                         </div>
 
-                        <ol id="nearest">
-                        </ol>
-
+                        <h3>Loading</h3>
                     </div>
-                    <div id="tabs-3">
-                        <br/>
 
-                        <div class="loading">
-                            <div class="sk-spinner sk-spinner-wordpress">
-                                <span class="sk-inner-circle"></span>
-                            </div>
+                    <ol id="nearest">
+                    </ol>
 
-                            <h3>Loading</h3>
-                        </div>
-
-
-                        <button onclick="nearest()">Nearest</button>
-
-                        <div class="slider-dev" style="display: none;">
-                            <div id="route-narrative"></div>
-                        </div>
-
-                    </div>
-                    <div id="tabs-4">
-
-                        <div class="loading">
-                            <div class="sk-spinner sk-spinner-wordpress">
-                                <span class="sk-inner-circle"></span>
-                            </div>
-
-                            <h3>Loading</h3>
-                        </div>
-
-                        <div class="slider-dev" style="display: none;">
-                            <div>
-                                {% if currentPath in "home" %}
-                                    {% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : currentPath } %}
-                                {% endif %}
-                            </div>
-                        </div>
+                    <div class="route" style="display: none;">
+                        <div id="route-narrative"></div>
+                        <a class="button" id="return">Return</a>
                     </div>
                 </div>
+
+                {#<div id="tabs-1">#}
+                {#<ul>#}
+                {#<li><a href="#tabs-2">Information</a></li>#}
+                {#<li><a href="#tabs-3">Route</a></li>#}
+                {#<li><a href="#tabs-4">Comments</a></li>#}
+                {#</ul>#}
+                {#<div id="tabs-2">#}
+                {#<br/>#}
+
+                {#</div>#}
+                {#<div id="tabs-3">#}
+                {#<br/>#}
+
+                {#<div class="loading">#}
+                {#<div class="sk-spinner sk-spinner-wordpress">#}
+                {#<span class="sk-inner-circle"></span>#}
+                {#</div>#}
+
+                {#<h3>Loading</h3>#}
+                {#</div>#}
+
+
+                {#<button onclick="nearest()">Nearest</button>#}
+
+                {#<div class="slider-dev" style="display: none;">#}
+                {#<div id="route-narrative"></div>#}
+                {#</div>#}
+
+                {#</div>#}
+                {#<div id="tabs-4">#}
+
+                {#<div class="loading">#}
+                {#<div class="sk-spinner sk-spinner-wordpress">#}
+                {#<span class="sk-inner-circle"></span>#}
+                {#</div>#}
+
+                {#<h3>Loading</h3>#}
+                {#</div>#}
+
+                {#<div class="slider-dev" style="display: none;">#}
+                {#<div>#}
+                {#{% if currentPath in "home" %}#}
+                {#{% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : currentPath } %}#}
+                {#{% endif %}#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
             </div>
         </div>
 
@@ -316,9 +317,15 @@
         $(document).ready(function () {
             $('body').attr('class', 'landing');
 
-            $("#tabs-1").tabs();
+//            $("#tabs-1").tabs();
 
             $("#route-narrative").scroll();
+
+            $("#return").click(function () {
+                $("#nearest").show();
+                $(".route").hide();
+                $("#route-narrative").empty();
+            });
         });
 
         var lat_1;
@@ -359,8 +366,8 @@
 
                 L.circle(e.latlng, radius).addTo(map);
 
-                $(".slider-dev").fadeIn();
-                $(".loading").fadeOut();
+//                $(".slider-dev").hide();
+                $(".loading").hide();
             }
 
             map.on('locationfound', onLocationFound);
@@ -382,12 +389,13 @@
             // display as carousel
             for (var i = 0; i < 5; i++) {
                 var $newli = $("<li></li>");
-                var $newa = $("<a href=''></a>");
+                var $newa = $("<a href='javascript:void(0)' " +
+                "onclick='route(" + lat_1 + "," + lng_1 + "," + sortRes[i]['lat'] + "," + sortRes[i]['lng'] + ")'></a>");
                 var $newdiv = $("<div class='row uniform 50%'></div>");
                 var $newinfo = $("<div class='8u 12u(2)'>" +
                 sortRes[i]['feature']['properties']['name'] + "<br/><h6>" + sortRes[i]['feature']['properties']['adress'] +
                 "</h6></div>");
-                var $newdist = $("<div class='4u 12u(2)'><h5>" + (sortRes[i]['distance']/1000).toFixed(2) + " km</h5></div>");
+                var $newdist = $("<div class='4u 12u(2)'><h5>" + (sortRes[i]['distance'] / 1000).toFixed(2) + " km</h5></div>");
 
                 $newdiv.append($newinfo);
                 $newdiv.append($newdist);
@@ -508,6 +516,10 @@
                 locale: "fr_FR"
             });
             map.addLayer(layer);
+
+            $("#nearest").hide();
+            $(".route").show();
+            $("#route-narrative").show("slide", {direction: "left"}, 1500);
         }
         //end of route
         //nearest
@@ -559,7 +571,7 @@
         $(window).on("resize", function () {
             $("#map").height($(window).height() / 1.5).width($(this).parent().width());
 //            map.invalidateSize();
-            $("#route-narrative").height($(window).height() / 3).width($(this).parent().width());
+            $("#route-narrative").height($(window).height() / 1.8).width($(this).parent().width());
         }).trigger("resize");
     </script>
 
