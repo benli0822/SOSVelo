@@ -4,7 +4,7 @@ namespace SOSVelo\Bundle\PointBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Point
@@ -315,7 +315,7 @@ class Point
      */
     public function __construct()
     {
-        $this->services = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     /**

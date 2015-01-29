@@ -1,0 +1,6 @@
+{% block text_widget %}
+    {#<div class="9u 12u(mobilep)">#}
+        {% set type = type|default('text') %}
+        {{ block('form_widget_simple') }}
+    {#</div>#}
+{% endblock %}

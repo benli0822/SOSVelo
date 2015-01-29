@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 
 /**
  * User controller that handle the CRUD
@@ -221,6 +222,9 @@ class UserController extends Controller {
         $user  = $this->get('security.context')->getToken()->getUser();
         $point = $em->getRepository('SOSVeloPointBundle:Point')->findOneByUser($user->getID());
         $listPointService = $em->getRepository('SOSVeloPointBundle:PointService')->findAll();
+        $choiceList = new ObjectChoiceList($point->getServices(), 'name', array(), null, 'id');
+
+        \Doctrine\Common\Util\Debug::dump($point->getServices());
 
         foreach($point->getServices() as $key1 => $service){
 //            if($listPointService->contains($service)){
@@ -233,6 +237,34 @@ class UserController extends Controller {
             }
 //                }
         }
+
+
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $point);
+
+        // On ajoute les champs de l'entité que l'on veut à notre formulaire
+        $formBuilder
+            ->add('adress',      'text')
+            ->add('description' , 'text')
+            ->add('services', 'choice')
+//            ->add(
+//                'services',
+//                'choice',
+//                array(
+//                    'choice_list'   => $choiceList,
+//                    'multiple'  => true,
+//                    'required' => false
+//                )
+//            )
+//            ->add('title',     'text')
+//            ->add('content',   'textarea')
+//            ->add('author',    'text')
+//            ->add('published', 'checkbox')
+//            ->add('save',      'submit')
+        ;
+        // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
+
+        // À partir du formBuilder, on génère le formulaire
+        $form = $formBuilder->getForm();
 
 //        // On boucle sur les catégories de l'annonce pour les supprimer
 //        for($i = 0 ; $i < count($point->getServices()); $i++)
@@ -259,7 +291,8 @@ class UserController extends Controller {
 
         return $this->render('SOSVeloUserBundle:UserCenter:point.html.twig',array(
             'point' => $point,
-            'allService' => $listPointService
+            'allService' => $listPointService,
+            'form' => $form->createView()
         ));
     }
 

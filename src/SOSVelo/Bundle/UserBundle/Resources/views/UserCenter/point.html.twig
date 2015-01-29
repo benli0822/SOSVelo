@@ -20,17 +20,41 @@
         <form action="#" method="post">
             <div class="row uniform">
 
+                {% form_theme form 'SOSVeloUserBundle:Form:field.html.twig' %}
+
+
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+                {# Les erreurs générales du formulaire. #}
+                {{ form_errors(form) }}
+
 
                 <div class="9u 12u(mobilep)">
-                    <label>Adresse : </label>
+                {# Génération du label. #}
+                {{ form_label(form.adress, "Adresse :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
 
-                    <input id="pointAdresse" type="text" placeholder=" " value="{{ point.adress }}" name="pointAdresse">
+                {{ form(form.adress) }}
                 </div>
+
                 <div class="9u 12u(mobilep)">
-                    <label>Horaire : </label>
+                {# Génération du label. #}
+                {{ form_label(form.description, "Horaire :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
 
-                    <input id="pointDescription" type="text" placeholder=" " value="{{ point.description }}" name="pointDescription">
+                {{ form(form.description) }}
                 </div>
+
+
+
+                {#<div class="9u 12u(mobilep)">#}
+                    {#<label>Adresse : </label>#}
+
+                    {#<input id="pointAdresse" type="text" placeholder=" " value="{{ point.adress }}" name="pointAdresse">#}
+                {#</div>#}
+                {#<div class="9u 12u(mobilep)">#}
+                    {#<label>Horaire : </label>#}
+
+                    {#<input id="pointDescription" type="text" placeholder=" " value="{{ point.description }}" name="pointDescription">#}
+                {#</div>#}
 
                 <div class="12u$">
                     <div class="select-wrapper">
