@@ -222,9 +222,9 @@ class UserController extends Controller {
         $user  = $this->get('security.context')->getToken()->getUser();
         $point = $em->getRepository('SOSVeloPointBundle:Point')->findOneByUser($user->getID());
         $listPointService = $em->getRepository('SOSVeloPointBundle:PointService')->findAll();
-        $choiceList = new ObjectChoiceList($point->getServices(), 'name', array(), null, 'id');
+//        $choiceList = new ObjectChoiceList($point->getServices(), 'name', array(), null, 'id');
 
-        \Doctrine\Common\Util\Debug::dump($point->getServices());
+//        \Doctrine\Common\Util\Debug::dump($point->getServices());
 
         foreach($point->getServices() as $key1 => $service){
 //            if($listPointService->contains($service)){
@@ -245,7 +245,7 @@ class UserController extends Controller {
         $formBuilder
             ->add('adress',      'text')
             ->add('description' , 'text')
-            ->add('services', 'choice')
+//            ->add('services', 'choice')
 //            ->add(
 //                'services',
 //                'choice',
