@@ -1,7 +1,11 @@
 <div class="2u 12u$(2)">
     <ul class="nav" style="border: 1px dashed #ccc">
         <li><a id="index" href="{{ path('sosvelo_user_user_uc') }}">Votre Compte</a></li>
-        <li><a id="point" href="{{ path('sosvelo_user_user_point') }}">Info Point</a></li>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li><a id="point_list" href="{{ path('sosvelo_user_user_pointlist') }}">Point List</a></li>
+        {% else %}
+            <li><a id="point" href="{{ path('sosvelo_user_user_point') }}">Info Point</a></li>
+        {% endif %}
         <li><a id="friend" href="{{ path('sosvelo_user_user_friend') }}">Liste des amis/aderents</a></li>
         <li><a id="comment" href="{{ path('sosvelo_user_user_comment') }}">Liste des
                 commentaires </a></li>

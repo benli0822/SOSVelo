@@ -321,9 +321,9 @@ class UserController extends Controller {
      * @Route("/uc/contact")
      * @Method({"GET"})
      */
-    public function usercontactAction()
+    public function userContactAction()
     {
-        return $this->render('SOSVeloUserBundle:UserCenter:usercontact.html.twig');
+        return $this->render('SOSVeloUserBundle:UserCenter:user_contact.html.twig');
     }
 
     /**
@@ -334,6 +334,16 @@ class UserController extends Controller {
     public function messageAction()
     {
         return $this->render('SOSVeloUserBundle:UserCenter:message.html.twig');
+    }
+
+    /**
+     * @ApiDoc()
+     * @Route("/uc/point_list")
+     * @Method({"GET"})
+     */
+    public function pointListAction()
+    {
+        return $this->render('SOSVeloUserBundle:UserCenter:point_list.html.twig');
     }
 
 }
