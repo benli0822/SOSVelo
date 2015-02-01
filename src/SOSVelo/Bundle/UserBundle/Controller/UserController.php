@@ -13,6 +13,8 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
+use SOSVelo\Bundle\PointBundle\Form\PointType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * User controller that handle the CRUD
@@ -213,38 +215,58 @@ class UserController extends Controller {
      *
      * @Apidoc()
      * @Route("/uc/point")
-     * @Method({"GET"})
+     *
      */
-    public function pointAction()
+    public function pointAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();
         $user  = $this->get('security.context')->getToken()->getUser();
         $point = $em->getRepository('SOSVeloPointBundle:Point')->findOneByUser($user->getID());
-        $listPointService = $em->getRepository('SOSVeloPointBundle:PointService')->findAll();
-//        $choiceList = new ObjectChoiceList($point->getServices(), 'name', array(), null, 'id');
-
-//        \Doctrine\Common\Util\Debug::dump($point->getServices());
-
-        foreach($point->getServices() as $key1 => $service){
-//            if($listPointService->contains($service)){
-//                $listPointService->remove($service);
-//            }
-            foreach($listPointService as $key2 => $PService) {
-                if ($PService->getName() == $service->getName()) {
-                    unset($listPointService[$key2]);
-                }
-            }
+//        $listPointService = $em->getRepository('SOSVeloPointBundle:PointService')->findAll();
+////        $choiceList = new ObjectChoiceList($point->getServices(), 'name', array(), null, 'id');
+//
+////       \Doctrine\Common\Util\Debug::dump($point->getServices());
+//
+//        foreach($point->getServices() as $key1 => $service){
+////            if($listPointService->contains($service)){
+////                $listPointService->remove($service);
+////            }
+//            foreach($listPointService as $key2 => $PService) {
+//                if ($PService->getName() == $service->getName()) {
+//                    unset($listPointService[$key2]);
 //                }
+//            }
+////                }
+//        }
+
+
+        $form = $this->get('form.factory')->create(new PointType(), $point);
+
+//        $form->handleRequest($request);
+
+        if ($form->handleRequest($request)->isValid()) {
+            // On l'enregistre notre objet $advert dans la base de données, par exemple
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($point);
+            $em->flush();
+            \Doctrine\Common\Util\Debug::dump($point);
+            $request->getSession()->getFlashBag()->add('notice', 'point.');
+
+            //TODO : redirect to this page
+            // On redirige vers la page de visualisation de le point que l'on a modifié
+            $this->render('SOSVeloUserBundle:UserCenter:uc.html.twig');
         }
 
 
-        $formBuilder = $this->get('form.factory')->createBuilder('form', $point);
+
+
+
 
         // On ajoute les champs de l'entité que l'on veut à notre formulaire
-        $formBuilder
-            ->add('adress',      'text')
-            ->add('description' , 'text')
+//        $formBuilder
+//            ->add('adress',      'text')
+//            ->add('description' , 'text')
 //            ->add('services', 'choice')
 //            ->add(
 //                'services',
@@ -260,11 +282,11 @@ class UserController extends Controller {
 //            ->add('author',    'text')
 //            ->add('published', 'checkbox')
 //            ->add('save',      'submit')
-        ;
+//        ;
         // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
 
         // À partir du formBuilder, on génère le formulaire
-        $form = $formBuilder->getForm();
+//        $form = $formBuilder->getForm();
 
 //        // On boucle sur les catégories de l'annonce pour les supprimer
 //        for($i = 0 ; $i < count($point->getServices()); $i++)
@@ -290,8 +312,8 @@ class UserController extends Controller {
 //        }
 
         return $this->render('SOSVeloUserBundle:UserCenter:point.html.twig',array(
-            'point' => $point,
-            'allService' => $listPointService,
+//             'point' => $point,
+//            'allService' => $listPointService,
             'form' => $form->createView()
         ));
     }
