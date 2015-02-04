@@ -143,6 +143,7 @@ class PointService
      */
     public function addPoint(\SOSVelo\Bundle\PointBundle\Entity\Point $point)
     {
+        $point->addService($this);
         $this->points[] = $point;
 
         return $this;
