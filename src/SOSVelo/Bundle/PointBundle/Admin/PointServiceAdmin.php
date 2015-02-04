@@ -33,7 +33,6 @@ class PointServiceAdmin extends Admin {
             ->add('name')
             ->add('description')
             ->add('privilege')
-            ->add('points')
         ;
     }
 
@@ -50,7 +49,6 @@ class PointServiceAdmin extends Admin {
             ->add('name')
             ->add('description')
             ->add('privilege')
-            ->add('points')
 //            ->end()
 //            ->with('Tags')
 //            ->add('tags', 'sonata_type_model', array('expanded' => true))
@@ -75,7 +73,6 @@ class PointServiceAdmin extends Admin {
             ->addIdentifier('name')
             ->add('description')
             ->add('privilege')
-            ->add('points')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'view' => array(),

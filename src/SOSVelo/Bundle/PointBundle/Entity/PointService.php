@@ -56,6 +56,12 @@ class PointService
         $this->points = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+
     /**
      * Get id
      *
@@ -143,7 +149,6 @@ class PointService
      */
     public function addPoint(\SOSVelo\Bundle\PointBundle\Entity\Point $point)
     {
-        $point->addService($this);
         $this->points[] = $point;
 
         return $this;

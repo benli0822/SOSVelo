@@ -33,6 +33,7 @@ class PointAdmin extends Admin {
             ->add('description')
             ->add('rating')
             ->add('activated')
+            ->add("services")
         ;
     }
 
@@ -51,6 +52,7 @@ class PointAdmin extends Admin {
             ->add('description')
             ->add('rating')
             ->add('activated')
+            ->add("services")
 //            ->end()
 //            ->with('Tags')
 //            ->add('tags', 'sonata_type_model', array('expanded' => true))
@@ -77,6 +79,7 @@ class PointAdmin extends Admin {
             ->add('description')
             ->add('rating')
             ->add('activated')
+            ->add("services")
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'view' => array(),
@@ -97,6 +100,7 @@ class PointAdmin extends Admin {
         $datagridMapper
             ->add('name')
             ->add('address')
+            ->add("services")
         ;
     }
 }
