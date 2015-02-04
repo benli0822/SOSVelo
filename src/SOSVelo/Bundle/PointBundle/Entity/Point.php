@@ -36,7 +36,7 @@ class Point
      *
      * @ORM\Column(name="adress", type="string", length=64)
      */
-    private $adress;
+    private $address;
 
     /**
      * @var string
@@ -85,11 +85,16 @@ class Point
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="SOSVelo\Bundle\PointBundle\Entity\PointService", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="SOSVelo\Bundle\PointBundle\Entity\PointService", cascade={"persist"}, inversedBy="points")
+     * @ORM\JoinTable(name="points_services")
      */
     private $services;
 
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
     /**
      * Get id
@@ -127,12 +132,12 @@ class Point
     /**
      * Set adress
      *
-     * @param string $adress
+     * @param string $address
      * @return Point
      */
-    public function setAdress($adress)
+    public function setAddress($address)
     {
-        $this->adress = $adress;
+        $this->address = $address;
     
         return $this;
     }
@@ -142,9 +147,9 @@ class Point
      *
      * @return string 
      */
-    public function getAdress()
+    public function getAddress()
     {
-        return $this->adress;
+        return $this->address;
     }
 
     /**
@@ -326,6 +331,7 @@ class Point
      */
     public function addService(\SOSVelo\Bundle\PointBundle\Entity\PointService $services)
     {
+        $services->addPoint($this);
         $this->services[] = $services;
 
         return $this;

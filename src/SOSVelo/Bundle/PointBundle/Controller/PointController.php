@@ -76,7 +76,7 @@ class PointController extends Controller {
             // Creating the entity
             $point = new Point();
             $point->setName($data["point"]["name"]);
-            $point->setAdress($data["point"]["adress"]);
+            $point->setAddress($data["point"]["adress"]);
             $point->setDescription($data["point"]["description"]);
             $point->setLongitude($data["point"]["longitude"]);
             $point->setLatitude($data["point"]["latitude"]);
@@ -313,7 +313,7 @@ class PointController extends Controller {
             } else {
                 // Creating the entity
                 $point->setName($data["point"]["name"]);
-                $point->setAdress($data["point"]["adress"]);
+                $point->setAddress($data["point"]["adress"]);
                 $point->setDescription($data["point"]["description"]);
                 $point->setLongitude($data["point"]["longitude"]);
                 $point->setLatitude($data["point"]["latitude"]);

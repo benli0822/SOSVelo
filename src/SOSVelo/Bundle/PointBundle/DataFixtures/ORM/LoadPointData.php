@@ -75,7 +75,7 @@ class LoadPointData implements FixtureInterface
         
         $point1 = new Point();
         $point1->setName('Base de plein air et de loisirs des Prés du Hem');
-        $point1->setAdress('7 Avenue Marc Sangnier, ARMENTIÈRES');
+        $point1->setAddress('7 Avenue Marc Sangnier, ARMENTIÈRES');
         $point1->setDescription('du lundi au vendredi de 12h à minuit et le samedi de 14h à 21h, le dimanche de 16h à 19h.');
         $point1->setLatitude('50.69465');
         $point1->setLongitude('2.880861');
@@ -86,7 +86,7 @@ class LoadPointData implements FixtureInterface
         
         $point2 = new Point();
         $point2->setName('Parc Mozaïc');
-        $point2->setAdress('Parc Mozaïc, HOUPLIN-ANCOISNE');
+        $point2->setAddress('Parc Mozaïc, HOUPLIN-ANCOISNE');
         $point2->setDescription('en avril, mai, septembre et octobre : du mercredi au dimanche de 10 h à 18 h (dimanche 19h) ; en juin, juillet et août : tous les jours de 10 h à 19 h (dimanche 20h).');
         $point2->setLatitude('50.578604');
         $point2->setLongitude('2.980317');
@@ -97,7 +97,7 @@ class LoadPointData implements FixtureInterface
         
         $point3 = new Point();
         $point3->setName('Acteurs pour une économie solidaire (APES)');
-        $point3->setAdress('81 rue Gantois, Lille');
+        $point3->setAddress('81 rue Gantois, Lille');
         $point3->setDescription('du lundi au vendredi de 9h à 12h et de 14h à 18h.');
         $point3->setLatitude('50.623712');
         $point3->setLongitude('3.059002');
@@ -108,7 +108,7 @@ class LoadPointData implements FixtureInterface
         
         $point4 = new Point();
         $point4->setName('Atelier Lille Sud Insertion');
-        $point4->setAdress('1 rue Jean Giraudoux et avenue Willy Brandt, Lille');
+        $point4->setAddress('1 rue Jean Giraudoux et avenue Willy Brandt, Lille');
         $point4->setDescription('du lundi au jeudi de 8h30 à 16h30 et le vendredi de 8h à midi.du lundi au jeudi de 8h30 à 16h30 et le vendredi de 8h à midi.');
         $point4->setLatitude('50.60834');
         $point4->setLongitude('3.045677');
@@ -119,7 +119,7 @@ class LoadPointData implements FixtureInterface
         
         $point5 = new Point();
         $point5->setName('Café Citoyen');
-        $point5->setAdress('7 place du Marché aux Chevaux, Lille');
+        $point5->setAddress('7 place du Marché aux Chevaux, Lille');
         $point5->setDescription('du lundi au vendredi de 12h à minuit et le samedi de 14h à 21h, le dimanche de 16h à 19h.');
         $point5->setLatitude('50.632791');
         $point5->setLongitude('3.063122');
@@ -130,7 +130,7 @@ class LoadPointData implements FixtureInterface
         
         $point6 = new Point();
         $point6->setName('Coffee Street vente de café ambulant');
-        $point6->setAdress('Place des Buisses, Lille');
+        $point6->setAddress('Place des Buisses, Lille');
         $point6->setDescription('du lundi au vendredi de 7h à 9h.');
         $point6->setLatitude('50.636846');
         $point6->setLongitude('3.070997');
@@ -141,7 +141,7 @@ class LoadPointData implements FixtureInterface
         
         $point7 = new Point();
         $point7->setName('Coiffeur Jackie G');
-        $point7->setAdress('138 rue Léon Gambetta, Lille');
+        $point7->setAddress('138 rue Léon Gambetta, Lille');
         $point7->setDescription('du mardi au samedi de 10h à 18h.');
         $point7->setLatitude('50.629728');
         $point7->setLongitude('3.055333');
@@ -152,7 +152,7 @@ class LoadPointData implements FixtureInterface
         
         $point8 = new Point();
         $point8->setName('Épicerie équitable');
-        $point8->setAdress('Halles de Wazemmes, Lille');
+        $point8->setAddress('Halles de Wazemmes, Lille');
         $point8->setDescription('du mardi au jeudi de 8h à 14h, le vendredi et le samedi de 8h à 20h et le dimanche 8h à 15h.');
         $point8->setLatitude('50.626638');
         $point8->setLongitude('3.049454');
@@ -163,7 +163,7 @@ class LoadPointData implements FixtureInterface
         
         $point9 = new Point();
         $point9->setName('Lilas Autopartage');
-        $point9->setAdress('55 boulevard de la Liberté, Lille');
+        $point9->setAddress('55 boulevard de la Liberté, Lille');
         $point9->setDescription('du lundi au samedi de 9h à 12h30 et de 14h à 18h.');
         $point9->setLatitude('50.635091');
         $point9->setLongitude('3.055676');
@@ -174,7 +174,7 @@ class LoadPointData implements FixtureInterface
         
         $point10 = new Point();
         $point10->setName('Maison des Associations');
-        $point10->setAdress('72 rue Royale, Lille');
+        $point10->setAddress('72 rue Royale, Lille');
         $point10->setDescription('le lundi de 14h à 18h30, du mardi au vendredi de 10h à 18h30 et le samedi de 9h à 12h30.');
         $point10->setLatitude('50.641528');
         $point10->setLongitude('3.056792');
@@ -185,7 +185,7 @@ class LoadPointData implements FixtureInterface
         
         $point11 = new Point();
         $point11->setName('MRES');
-        $point11->setAdress('23 rue Gosselet, Lille');
+        $point11->setAddress('23 rue Gosselet, Lille');
         $point11->setDescription('du lundi au vendredi de 9h à midi et de 14h à 19h et le samedi de 9h à midi.');
         $point11->setLatitude('50.626189');
         $point11->setLongitude('3.067478');
@@ -196,7 +196,7 @@ class LoadPointData implements FixtureInterface
         
         $point12 = new Point();
         $point12->setName('Les Potes en ciel');
-        $point12->setAdress('46 Rue de Lannoy, Lille');
+        $point12->setAddress('46 Rue de Lannoy, Lille');
         $point12->setDescription('mercredi de 9h à 19h, vendredi de 9h à 12h et de 16h30 à 19h30, samedi de 9h à 19h, dimanche de 14h à 18h30.');
         $point12->setLatitude('50.634111');
         $point12->setLongitude('3.094193');
@@ -207,7 +207,7 @@ class LoadPointData implements FixtureInterface
         
         $point13 = new Point();
         $point13->setName('Ressourcerie Envie');
-        $point13->setAdress('15 rue de Courmont , Lille');
+        $point13->setAddress('15 rue de Courmont , Lille');
         $point13->setDescription('du mardi au samedi de 10h à 12h et de 14h à 19h.');
         $point13->setLatitude('50.6196');
         $point13->setLongitude('3.06662');
@@ -218,7 +218,7 @@ class LoadPointData implements FixtureInterface
         
         $point14 = new Point();
         $point14->setName('Toubio');
-        $point14->setAdress('52 rue de Wazemmes, Lille');
+        $point14->setAddress('52 rue de Wazemmes, Lille');
         $point14->setDescription('le lundi de 15h à 19h30, du mardi au vendredi de 10h à 13h et de 15h à 19h30, le samedi de 10h à 13h et de 15h à 19h30.');
         $point14->setLatitude('50.622881');
         $point14->setLongitude('3.062436');
@@ -229,7 +229,7 @@ class LoadPointData implements FixtureInterface
         
         $point15 = new Point();
         $point15->setName('Maison des Associations');
-        $point15->setAdress('place de la Liberté , Roubaix');
+        $point15->setAddress('place de la Liberté , Roubaix');
         $point15->setDescription('le lundi de 14h à 18h, du mardi au vendredi de 9h à 19h et le samedi de 9h à 18h.');
         $point15->setLatitude('50.691904');
         $point15->setLongitude('3.178994');
@@ -240,7 +240,7 @@ class LoadPointData implements FixtureInterface
         
         $point16 = new Point();
         $point16->setName('Relais Nature du Parc de la Deûle');
-        $point16->setAdress('20 chemin de Halage, SANTES');
+        $point16->setAddress('20 chemin de Halage, SANTES');
         $point16->setDescription('Ouvert au public d’avril à octobre : 10h à 17h du mercredi au vendredi 10h à 18h les week-ends, jours fériés et vacances scolaires Fermeture les lundis et mardis.');
         $point16->setLatitude('50.565399');
         $point16->setLongitude('2.95931');
@@ -251,7 +251,7 @@ class LoadPointData implements FixtureInterface
         
         $point17 = new Point();
         $point17->setName('Pavillon de Chasse');
-        $point17->setAdress('chemin du Grand Marais, VILLENEUVE D’ASCQ');
+        $point17->setAddress('chemin du Grand Marais, VILLENEUVE D’ASCQ');
         $point17->setDescription('du lundi au vendredi de 9h à 17h.');
         $point17->setLatitude('50.64033');
         $point17->setLongitude('3.167235');
@@ -275,6 +275,8 @@ class LoadPointData implements FixtureInterface
             $service = new PointService();
             $service->setName($name);
             $service->setDescription($name);
+            $service->setPrivilege(0);
+            $point1->addService($service);
             // On la persiste
             $manager->persist($service);
         }

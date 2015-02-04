@@ -3,6 +3,7 @@
 namespace SOSVelo\Bundle\PointBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * PointService
@@ -35,6 +36,25 @@ class PointService
      */
     private $description;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="privilege", type="integer")
+     */
+    private $privilege;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="SOSVelo\Bundle\PointBundle\Entity\Point", mappedBy="services")
+     */
+    private $points;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->points = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -90,5 +110,61 @@ class PointService
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set privilege
+     *
+     * @param integer $privilege
+     * @return ServiceType
+     */
+    public function setPrivilege($privilege)
+    {
+        $this->privilege = $privilege;
+
+        return $this;
+    }
+
+    /**
+     * Get privilege
+     *
+     * @return integer
+     */
+    public function getPrivilege()
+    {
+        return $this->privilege;
+    }
+
+    /**
+     * Add Point
+     *
+     * @param Point $point
+     * @return $this
+     */
+    public function addPoint(\SOSVelo\Bundle\PointBundle\Entity\Point $point)
+    {
+        $this->points[] = $point;
+
+        return $this;
+    }
+
+    /**
+     * Remove point
+     *
+     * @param Point $point
+     */
+    public function removePoint(\SOSVelo\Bundle\PointBundle\Entity\Point $point)
+    {
+        $this->services->removeElement($point);
+    }
+
+    /**
+     * Get points
+     *
+     * @return ArrayCollection
+     */
+    public function getPoints()
+    {
+        return $this->points;
     }
 }

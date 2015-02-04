@@ -251,3 +251,25 @@ sonata_block:
 sonata_admin:
     title:      SOSVelo Admin
     title_logo: bundles/sosvelotemplate/img/sosvelo/sosvelo_logo.png
+
+services:
+    sosvelo.point.admin.point:
+      class: SOSVelo\Bundle\PointBundle\Admin\PointAdmin
+      tags:
+        - { name: sonata.admin, manager_type: orm, group: Points Service, label: Points }
+      arguments: [null, SOSVelo\Bundle\PointBundle\Entity\Point, SOSVeloPointBundle:PointAdmin]
+    sosvelo.point.admin.demande:
+     class: SOSVelo\Bundle\PointBundle\Admin\DemandeAdmin
+     tags:
+       - { name: sonata.admin, manager_type: orm, group: Points Service, label: Demands }
+     arguments: [null, SOSVelo\Bundle\PointBundle\Entity\Demande, SOSVeloPointBundle:DemandeAdmin]
+    sosvelo.point.admin.pointcomment:
+        class: SOSVelo\Bundle\PointBundle\Admin\PointCommentAdmin
+        tags:
+          - { name: sonata.admin, manager_type: orm, group: Points Service, label: Comments }
+        arguments: [null, SOSVelo\Bundle\PointBundle\Entity\PointComment, SOSVeloPointBundle:PointCommentAdmin]
+    sosvelo.point.admin.pointservice:
+           class: SOSVelo\Bundle\PointBundle\Admin\PointServiceAdmin
+           tags:
+             - { name: sonata.admin, manager_type: orm, group: Points Service, label: Service Types }
+           arguments: [null, SOSVelo\Bundle\PointBundle\Entity\PointService, SOSVeloPointBundle:PointServiceAdmin]
