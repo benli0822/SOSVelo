@@ -134,7 +134,7 @@ class PointController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $query = $em->createQuery(
-                'SELECT p.id, p.name, p.adress, p.description, p.longitude, p.latitude, p.activated
+                'SELECT p.id, p.name, p.address, p.description, p.longitude, p.latitude, p.activated
                         FROM SOSVeloPointBundle:Point p
                         ORDER BY p.id ASC');
 
@@ -155,7 +155,7 @@ class PointController extends Controller {
                 'properties' => array(
                     'id' => $result[$i]["id"],
                     'name' => $result[$i]["name"],
-                    'adress' => $result[$i]["adress"],
+                    'address' => $result[$i]["address"],
                     'description' => $result[$i]["description"],
                     'activated' => $result[$i]["activated"]
                 )
