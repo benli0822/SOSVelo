@@ -49,6 +49,7 @@ assetic:
                 - '@SOSVeloTemplateBundle/Resources/public/js/jquery.scrollgress.min.js'
                 - '@SOSVeloTemplateBundle/Resources/public/js/skel.min.js'
                 - '@SOSVeloTemplateBundle/Resources/public/js/skel-layers.min.js'
+                - '@FOSCommentBundle/Resources/assets/js/comments.js'
         skel_css:
             inputs:
                 - '@SOSVeloTemplateBundle/Resources/public/css/skel.css'
@@ -95,9 +96,9 @@ fos_comment:
     db_driver: orm
     class:
         model:
-            comment: SOSVelo\Bundle\CommentBundle\Entity\Comment
-            thread: SOSVelo\Bundle\CommentBundle\Entity\Thread
-            vote: SOSVelo\Bundle\CommentBundle\Entity\Vote
+            comment: SOSVelo\Bundle\PointBundle\Entity\PointComment
+            thread: SOSVelo\Bundle\PointBundle\Entity\PointCommentThread
+            vote: SOSVelo\Bundle\PointBundle\Entity\PointCommentVote
     acl: true
     service:
         acl:
