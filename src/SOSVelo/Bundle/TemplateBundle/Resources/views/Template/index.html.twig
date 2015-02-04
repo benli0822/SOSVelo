@@ -263,9 +263,19 @@
                                 </div>
 
                                 <div class="slider-dev">
+
                                     <div>
                                         {% if currentPath in "home" %}
-                                            {% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : currentPath } %}
+
+                                            {#{% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : currentPath } %}#}
+                                            <div id="fos_comment_thread" data-thread="{{ thread.id }}">
+
+                                                {% include 'FOSCommentBundle:Thread:comments.html.twig' with {
+                                                'comments': comments,
+                                                'thread': thread
+                                                } %}
+
+                                            </div>
                                         {% endif %}
                                     </div>
                                 </div>

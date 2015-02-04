@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpFoundation\Request;
+
+
 
 class TemplateController extends Controller
 {
@@ -14,9 +17,27 @@ class TemplateController extends Controller
      * @Route("/home")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render('SOSVeloTemplateBundle:Template:index.html.twig');
+
+        $id = 'thread_id';
+        $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
+        if (null === $thread) {
+            $thread = $this->container->get('fos_comment.manager.thread')->createThread();
+            $thread->setId($id);
+            $thread->setPermalink($request->getUri());
+
+            // Add the thread
+            $this->container->get('fos_comment.manager.thread')->saveThread($thread);
+        }
+        $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
+
+        return $this->render('SOSVeloTemplateBundle:Template:index.html.twig',
+            array(
+                'comments' => $comments,
+                'thread' => $thread,
+            )
+    );
     }
 
     /**
