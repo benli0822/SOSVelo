@@ -8,6 +8,6 @@ class SOSVeloUserBundle extends Bundle
 {
     public function getParent()
     {
-        return 'FOSUserBundle';
+        return 'SonataUserBundle';
     }
 }

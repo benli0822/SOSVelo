@@ -2,15 +2,15 @@
 
 namespace SOSVelo\Bundle\UserBundle\Entity;
 
-use Sonata\UserBundle\Entity\BaseUser as BaseUser;
+use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
 use FOS\MessageBundle\Model\ParticipantInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="sos_user")
+ * @ORM\Table(name="sos_group")
  */
-class User extends BaseUser implements ParticipantInterface
+class Group extends BaseGroup
 {
     /**
      * @ORM\Id
@@ -28,13 +28,5 @@ class User extends BaseUser implements ParticipantInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    public function __construct()
-    {
-        parent::__construct();
-        
-        $this->roles = array('ROLE_USER');
-        $this->setEnabled(true);
     }
 }
