@@ -225,9 +225,9 @@ class UserController extends Controller {
         $point = $em->getRepository('SOSVeloPointBundle:Point')->findOneByUser($user->getID());
 
         //when this user has no point
-        if(!$point){
-            $this->render('SOSVeloUserBundle:UserCenter:uc.html.twig');
-        }
+//        if(!$point){
+//            $this->render('SOSVeloUserBundle:UserCenter:uc.html.twig');
+//        }
 //        $listPointService = $em->getRepository('SOSVeloPointBundle:PointService')->findAll();
 ////        $choiceList = new ObjectChoiceList($point->getServices(), 'name', array(), null, 'id');
 //

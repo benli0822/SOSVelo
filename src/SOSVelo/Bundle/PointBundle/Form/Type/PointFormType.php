@@ -11,7 +11,7 @@ class PointFormType extends AbstractType
     {
         $builder
                 ->add('name', null, array('label' => 'Nom : '))
-                ->add('adress', null, array('label' => 'Adresse : '))
+                ->add('address', null, array('label' => 'Adresse : '))
                 ->add('description', 'textarea', array('label' => 'Description : '))
                 ->add('latitude', null, array('label' => 'Latitude : '))
                 ->add('longitude', null, array('label' => 'Longitude : '));
