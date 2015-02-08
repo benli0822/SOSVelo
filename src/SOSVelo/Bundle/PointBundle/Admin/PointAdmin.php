@@ -34,6 +34,7 @@ class PointAdmin extends Admin {
             ->add('rating')
             ->add('activated')
             ->add("services")
+            ->add('user')
         ;
     }
 
@@ -53,6 +54,7 @@ class PointAdmin extends Admin {
             ->add('rating')
             ->add('activated')
             ->add("services")
+            ->add('user')
 //            ->end()
 //            ->with('Tags')
 //            ->add('tags', 'sonata_type_model', array('expanded' => true))
@@ -80,6 +82,7 @@ class PointAdmin extends Admin {
             ->add('rating')
             ->add('activated')
             ->add("services")
+            ->add('user')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'view' => array(),
