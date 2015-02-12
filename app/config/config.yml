@@ -274,3 +274,8 @@ services:
            tags:
              - { name: sonata.admin, manager_type: orm, group: Points Service, label: Service Types }
            arguments: [null, SOSVelo\Bundle\PointBundle\Entity\PointService, SOSVeloPointBundle:PointServiceAdmin]
+    sosvelo.user.admin.usermessage:
+           class: SOSVelo\Bundle\UserBundle\Admin\UserMessageAdmin
+           tags:
+              - { name: sonata.admin, manager_type: orm, group: Messages, label: Message }
+           arguments: [null, SOSVelo\Bundle\UserBundle\Entity\UserMessage, SOSVeloUserBundle:UserMessageAdmin]
