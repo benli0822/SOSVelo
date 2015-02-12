@@ -5,63 +5,94 @@
 {% block title %}Contact ADAV{#TODO username#} {% endblock %}
 
 {% block content %}
-<div class="9u -1u 12u$(2)">
+    <section id="main" class="container 75%">
     <h3>Contact</h3>
-
-    <form action="#" method="post">
-        <div class="row uniform">
-            <div class="6u 12u$(4)">
-                <input type="text" placeholder="Name" value="" id="name" name="name">
-            </div>
-            <div class="6u$ 12u$(4)">
-                <input type="email" placeholder="Email" value="" id="email" name="email">
-            </div>
-            <!-- Break -->
-            <div class="12u$">
-                <div class="select-wrapper">
-                    <select id="category" name="category">
-                        <option value="">- Category -</option>
-                        <option value="1">Manufacturing</option>
-                        <option value="1">Shipping</option>
-                        <option value="1">Administration</option>
-                        <option value="1">Human Resources</option>
-                    </select>
-                </div>
-            </div>
-            <!-- Break -->
-            <div class="4u 12u$(3)">
-                <input type="radio" checked="" name="priority" id="priority-low">
-                <label for="priority-low">Low Priority</label>
-            </div>
-            <div class="4u 12u$(3)">
-                <input type="radio" name="priority" id="priority-normal">
-                <label for="priority-normal">Normal Priority</label>
-            </div>
-            <div class="4u$ 12u$(3)">
-                <input type="radio" name="priority" id="priority-high">
-                <label for="priority-high">High Priority</label>
-            </div>
-            <!-- Break -->
-            <div class="6u 12u$(3)">
-                <input type="checkbox" name="copy" id="copy">
-                <label for="copy">Email me a copy of this message</label>
-            </div>
-            <div class="6u$ 12u$(3)">
-                <input type="checkbox" checked="" name="human" id="human">
-                <label for="human">I am a human and not a robot</label>
-            </div>
-            <!-- Break -->
-            <div class="12u$">
-                <textarea rows="6" placeholder="Enter your message" id="message" name="message"></textarea>
-            </div>
-            <!-- Break -->
-            <div class="12u$">
-                <ul class="actions">
-                    <li><input type="submit" value="Send Message"></li>
-                    <li><input type="reset" class="alt" value="Reset"></li>
-                </ul>
-            </div>
+    <div class="box">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        {# Les erreurs générales du formulaire. #}
+        {{ form_errors(form) }}
+        <div class="12u">
+            {# Génération du label. #}
+            {{ form_label(form.title, "titre de message :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_widget(form.title) }}
         </div>
-    </form>
-</div>
+        <div class="12u">
+            {# Génération du label. #}
+            {{ form_label(form.content, "contenu de message :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            {{ form_widget(form.content) }}
+        </div>
+
+        </br>
+        </br>
+        <div class="12u">
+            <ul class="actions">
+                <div class="12u">
+                    {{ form_widget(form.save) }}
+                </div>
+            </ul>
+
+        </div>
+
+
+        {{ form_end(form) }}
+    </div>
+
+    {#<form action="#" method="post">#}
+        {#<div class="row uniform">#}
+            {#<div class="6u 12u$(4)">#}
+                {#<input type="text" placeholder="Name" value="" id="name" name="name">#}
+            {#</div>#}
+            {#<div class="6u$ 12u$(4)">#}
+                {#<input type="email" placeholder="Email" value="" id="email" name="email">#}
+            {#</div>#}
+            {#<!-- Break -->#}
+            {#<div class="12u$">#}
+                {#<div class="select-wrapper">#}
+                    {#<select id="category" name="category">#}
+                        {#<option value="">- Category -</option>#}
+                        {#<option value="1">Manufacturing</option>#}
+                        {#<option value="1">Shipping</option>#}
+                        {#<option value="1">Administration</option>#}
+                        {#<option value="1">Human Resources</option>#}
+                    {#</select>#}
+                {#</div>#}
+            {#</div>#}
+            {#<!-- Break -->#}
+            {#<div class="4u 12u$(3)">#}
+                {#<input type="radio" checked="" name="priority" id="priority-low">#}
+                {#<label for="priority-low">Low Priority</label>#}
+            {#</div>#}
+            {#<div class="4u 12u$(3)">#}
+                {#<input type="radio" name="priority" id="priority-normal">#}
+                {#<label for="priority-normal">Normal Priority</label>#}
+            {#</div>#}
+            {#<div class="4u$ 12u$(3)">#}
+                {#<input type="radio" name="priority" id="priority-high">#}
+                {#<label for="priority-high">High Priority</label>#}
+            {#</div>#}
+            {#<!-- Break -->#}
+            {#<div class="6u 12u$(3)">#}
+                {#<input type="checkbox" name="copy" id="copy">#}
+                {#<label for="copy">Email me a copy of this message</label>#}
+            {#</div>#}
+            {#<div class="6u$ 12u$(3)">#}
+                {#<input type="checkbox" checked="" name="human" id="human">#}
+                {#<label for="human">I am a human and not a robot</label>#}
+            {#</div>#}
+            {#<!-- Break -->#}
+            {#<div class="12u$">#}
+                {#<textarea rows="6" placeholder="Enter your message" id="message" name="message"></textarea>#}
+            {#</div>#}
+            {#<!-- Break -->#}
+            {#<div class="12u$">#}
+                {#<ul class="actions">#}
+                    {#<li><input type="submit" value="Send Message"></li>#}
+                    {#<li><input type="reset" class="alt" value="Reset"></li>#}
+                {#</ul>#}
+            {#</div>#}
+        {#</div>#}
+    {#</form>#}
+
+    </section>
+
 {% endblock %}
