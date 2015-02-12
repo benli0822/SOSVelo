@@ -267,7 +267,7 @@
                                     <div>
                                         {% if currentPath in "home" %}
 
-                                            {#{% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : currentPath } %}#}
+                                            {% include 'FOSCommentBundle:Thread:async.html.twig' with { 'id' : currentPath } %}
                                             <div id="fos_comment_thread" data-thread="{{ thread.id }}">
 
                                                 {% include 'FOSCommentBundle:Thread:comments.html.twig' with {
@@ -314,8 +314,8 @@
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     {#<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>#}
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-    <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
-    <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluur2902nu%2C22%3Do5-90805z"></script>
+    <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-map.js?key=Fmjtd%7Cluu821ua2l%2Crx%3Do5-94asdf"></script>
+    <script src="http://www.mapquestapi.com/sdk/leaflet/v1.s/mq-routing.js?key=Fmjtd%7Cluu821ua2l%2Crx%3Do5-94asdf"></script>
     <script src="//rawgithub.com/domoritz/leaflet-locatecontrol/gh-pages/dist/L.Control.Locate.min.js"></script>
     <script src="{{ path("sosvelo_point_point_getgeojsonpoints") }}"></script>
 
@@ -345,11 +345,12 @@
             layers: MQ.mapLayer()
         });
 
-        //        L.tileLayer('http://{s}.tile.cloudmade.com/1cc75fcc8e2243d1b2f6aab1e5850be1/998/256/{z}/{x}/{y}.png', {
-        //            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-        //            maxZoom: 18
-        //        }).addTo(map);
-        //end of init_map
+
+        L.tileLayer('http://{s}.tile.cloudmade.com/1cc75fcc8e2243d1b2f6aab1e5850be1/998/256/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+            maxZoom: 18
+        }).addTo(map);
+        //        end of init_map
 
         // domoritz/leaflet-locatecontrol => show current position
         L.control.locate().addTo(map);
@@ -402,7 +403,7 @@
                 "id='" + sortRes[i]['feature']['properties']['name'] + "'></a>");
                 var $newdiv = $("<div class='row uniform 50%'></div>");
                 var $newinfo = $("<div class='8u 12u(2)'>" +
-                sortRes[i]['feature']['properties']['name'] + "<br/><h6>" + sortRes[i]['feature']['properties']['adress'] +
+                sortRes[i]['feature']['properties']['name'] + "<br/><h6>" + sortRes[i]['feature']['properties']['address'] +
                 "</h6></div>");
                 var $newdist = $("<div class='4u 12u(2)'><h5>" + (sortRes[i]['distance'] / 1000).toFixed(2) + " km</h5></div>");
 
@@ -465,7 +466,7 @@
                     if (feature.properties.activated) {
                         var marker = L.marker(latLng, {
                             icon: SOSVeloIcon
-                        }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a><span class='space_80px'/><a href='#' onClick='deletePoint(" + feature.properties.id + ")'>Supprimer ce point.</a>");
+                        }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Address : " + feature.properties.address + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a><span class='space_80px'/><a href='#' onClick='deletePoint(" + feature.properties.id + ")'>Supprimer ce point.</a>");
                         markers.push(marker);
                         return marker;
                     }
@@ -473,7 +474,7 @@
                         var marker = L.marker(latLng, {
                             icon: redIcon,
                             title: feature.properties.name
-                        }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='activatePoint(" + feature.properties.id + ")'>Activer ce point.</a><span class='space_80px'/><a href='#' onClick='deletePoint(" + feature.properties.id + ")'>Supprimer ce point.</a>");
+                        }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adrdess : " + feature.properties.address + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='activatePoint(" + feature.properties.id + ")'>Activer ce point.</a><span class='space_80px'/><a href='#' onClick='deletePoint(" + feature.properties.id + ")'>Supprimer ce point.</a>");
                         markers.push(marker);
                         return marker;
                     }
@@ -481,7 +482,7 @@
                     if (feature.properties.activated) {
                         var marker = L.marker(latLng, {
                             icon: SOSVeloIcon
-                        }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Adresse : " + feature.properties.adress + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a>");
+                        }).bindPopup("SOSVélo : " + feature.properties.name + "<br> Address : " + feature.properties.address + "<br> Infos : " + feature.properties.description + "<br><br><a href='#' onClick='routeToPoint(lat_1, lng_1, " + lat_2 + ", " + lng_2 + ")'>Aller à ce point</a>");
                         markers.push(marker);
                         return marker;
                     }
