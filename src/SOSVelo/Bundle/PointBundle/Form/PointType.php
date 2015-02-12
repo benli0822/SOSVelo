@@ -19,7 +19,7 @@ class PointType extends AbstractType
     {
         $builder
             ->add('name','text')
-            ->add('adress','text')
+            ->add('address','text')
             ->add('description','text')
             ->add('services','entity', array(
                 'class' => 'SOSVeloPointBundle:PointService',
@@ -44,7 +44,7 @@ class PointType extends AbstractType
     /**
      * @param OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'SOSVelo\Bundle\PointBundle\Entity\Point'

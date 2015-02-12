@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: benli
- * Date: 04/02/15
- * Time: 21:39
+ * User: jamesRMBP
+ * Date: 12/02/15
+ * Time: 21:40
  */
 
-namespace SOSVelo\Bundle\PointBundle\Admin;
+namespace SOSVelo\Bundle\UserBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -16,9 +16,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 use Knp\Menu\ItemInterface as MenuItemInterface;
 
-use SOSVelo\Bundle\PointBundle\Entity\Point;
 
-class PointAdmin extends Admin {
+use SOSVelo\Bundle\UserBundle\Entity\UserMessage;
+
+class UserMessageAdmin extends Admin {
+
 
     /**
      * @param \Sonata\AdminBundle\Show\ShowMapper $showMapper
@@ -28,13 +30,8 @@ class PointAdmin extends Admin {
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('name')
-            ->add('address')
-            ->add('description')
-            ->add('rating')
-            ->add('activated')
-            ->add("services")
-            ->add('user')
+            ->add('$sender')
+
         ;
     }
 
@@ -48,13 +45,7 @@ class PointAdmin extends Admin {
         $formMapper
             ->with('General')
 //            ->add('enabled', null, array('required' => false))
-            ->add('name')
-            ->add('address')
-            ->add('description')
-            ->add('rating')
-            ->add('activated')
-            ->add("services")
-            ->add('user')
+           ->add('sender')
 //            ->end()
 //            ->with('Tags')
 //            ->add('tags', 'sonata_type_model', array('expanded' => true))
@@ -77,12 +68,7 @@ class PointAdmin extends Admin {
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('address')
-            ->add('description')
-            ->add('rating')
-            ->add('activated')
-            ->add("services")
-            ->add('user')
+             -add('sender')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'view' => array(),
@@ -101,9 +87,8 @@ class PointAdmin extends Admin {
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('address')
-            ->add("services")
+            ->add('sender')
         ;
     }
-}
+
+} 

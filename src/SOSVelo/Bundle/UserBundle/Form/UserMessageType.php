@@ -1,12 +1,12 @@
 <?php
 
-namespace SOSVelo\Bundle\PointBundle\Form;
+namespace SOSVelo\Bundle\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PointServiceType extends AbstractType
+class UserMessageType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,7 +15,8 @@ class PointServiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text')
+            ->add('thread')
+            ->add('sender')
         ;
     }
     
@@ -25,7 +26,7 @@ class PointServiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'SOSVelo\Bundle\PointBundle\Entity\PointService'
+            'data_class' => 'SOSVelo\Bundle\UserBundle\Entity\UserMessage'
         ));
     }
 
@@ -34,6 +35,6 @@ class PointServiceType extends AbstractType
      */
     public function getName()
     {
-        return 'sosvelo_bundle_pointbundle_pointservice';
+        return 'sosvelo_bundle_userbundle_usermessage';
     }
 }
