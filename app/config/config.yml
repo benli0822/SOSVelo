@@ -59,12 +59,12 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   %database_driver%
-        host:     %database_host%
-        port:     %database_port%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
+        driver: %database_driver%
+        host: eu-cdbr-west-01.cleardb.com
+        dbname: heroku_106ade01e332d47
+        user: b960b7e443d296
+        password: c68431bf
+        charset: UTF8
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
