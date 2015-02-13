@@ -346,11 +346,75 @@ class UserController extends Controller {
     /**
      * @Apidoc()
      * @Route("/uc/contact")
-     * @Method({"GET"})
+     *
      */
-    public function userContactAction()
+    public function userContactAction(Request $request)
     {
-        return $this->render('SOSVeloUserBundle:UserCenter:user_contact.html.twig');
+
+
+
+        $senderUser  = $this->get('security.context')->getToken()->getUser();
+        $threadBuilder = $this->get('fos_message.composer')->newThread();
+
+        //get admin user
+        $userManager = $this->get('fos_user.user_manager');
+        $user1 = $userManager->findUserByUsername('admin');
+
+        $form = $this->get('form.factory')->createBuilder('form')
+            ->add('title',     'text')
+            ->add('content',   'textarea')
+            ->add('save','submit',array(
+                'attr' => array(
+                    'class' => 'button special'
+                )))
+            ->getForm()
+        ;
+
+        if ($form->handleRequest($request)->isValid()) {
+            // On l'enregistre notre objet $advert dans la base de données, par exemple
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($point);
+//            $em->flush();
+//            \Doctrine\Common\Util\Debug::dump($point);
+//            $request->getSession()->getFlashBag()->add('notice', 'point.');
+//
+//            //TODO : redirect to this page
+//            // On redirige vers la page de visualisation de le point que l'on a modifié
+
+            $data = $request->request->all();
+            $title = $data['form']['title'];
+            $content = $data['form']['content'];
+            $threadBuilder
+                ->addRecipient($user1) // Retrieved from your backend, your user manager or ...
+                ->setSender($senderUser)
+                ->setSubject($title)
+                ->setBody($content);
+
+
+
+
+
+            //send a message
+            $sender =$this->get('fos_message.sender');
+            $sender->send($threadBuilder->getMessage());
+
+
+            $this->render('SOSVeloUserBundle:UserCenter:uc.html.twig');
+        }
+//        $threadBuilder
+//            ->addRecipient($user1) // Retrieved from your backend, your user manager or ...
+//            ->setSender($sender)
+//            ->setSubject('Stof commented on your pull request #456789')
+//            ->setBody('You have a typo, : mondo instead of mongo. Also for coding standards ...');
+//
+//
+//        $sender = $this->get('fos_message.sender');
+//        $sender->send($threadBuilder->getMessage());
+
+
+        return $this->render('SOSVeloUserBundle:UserCenter:user_contact.html.twig',array(
+            'form' => $form->createView()
+        ));
     }
 
     /**
@@ -360,7 +424,12 @@ class UserController extends Controller {
      */
     public function messageAction()
     {
-        return $this->render('SOSVeloUserBundle:UserCenter:message.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $user  = $this->get('security.context')->getToken()->getUser();
+        $messages = $em->getRepository('SOSVeloUserBundle:UserMessage')->findBySender($user->getID());
+        return $this->render('SOSVeloUserBundle:UserCenter:message.html.twig',array(
+            'messages' => $messages
+        ));
     }
 
     /**

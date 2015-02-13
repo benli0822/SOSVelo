@@ -28,20 +28,16 @@ class AppKernel extends Kernel
             new SOSVelo\Bundle\TemplateBundle\SOSVeloTemplateBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
-            // Add your dependencies
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
 
-            // If you haven't already, add the storage bundle
-            // This example uses SonataDoctrineORMAdmin but
-            // it works the same with the alternatives
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
 
-            // Then add SonataAdminBundle
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DatagridBundle\SonataDatagridBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
