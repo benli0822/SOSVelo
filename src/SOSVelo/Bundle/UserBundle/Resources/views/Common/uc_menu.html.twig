@@ -13,6 +13,7 @@
         <li><a id="message" href="{{ url('sosvelo_user_user_message') }}">Boître de
                 messages</a></li>
     </ul>
-
+    {% if is_granted("ROLE_SUPER_ADMIN") %}
     <a class="button special fit" href="{{ path('sonata_admin_dashboard') }}">Admin Dashboard</a>
+    {% endif %}
 </div>
