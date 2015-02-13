@@ -30,8 +30,8 @@ class UserMessageAdmin extends Admin {
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('$sender')
-
+            ->add('sender')
+            ->add('thread')
         ;
     }
 
@@ -46,7 +46,9 @@ class UserMessageAdmin extends Admin {
             ->with('General')
 //            ->add('enabled', null, array('required' => false))
            ->add('sender')
-//            ->end()
+            ->add('thread')
+
+            //            ->end()
 //            ->with('Tags')
 //            ->add('tags', 'sonata_type_model', array('expanded' => true))
 //            ->end()
@@ -67,8 +69,10 @@ class UserMessageAdmin extends Admin {
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
+            ->addIdentifier('sender')
              -add('sender')
+            ->add('thread')
+
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'view' => array(),

@@ -424,7 +424,12 @@ class UserController extends Controller {
      */
     public function messageAction()
     {
-        return $this->render('SOSVeloUserBundle:UserCenter:message.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $user  = $this->get('security.context')->getToken()->getUser();
+        $messages = $em->getRepository('SOSVeloUserBundle:UserMessage')->findBySender($user->getID());
+        return $this->render('SOSVeloUserBundle:UserCenter:message.html.twig',array(
+            'messages' => $messages
+        ));
     }
 
     /**

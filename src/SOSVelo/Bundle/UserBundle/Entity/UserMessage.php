@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\MessageBundle\Entity\Message as BaseMessage;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="SOSVelo\Bundle\UserBundle\Entity\UserMessageRepository")
  */
 class UserMessage extends BaseMessage
 {
