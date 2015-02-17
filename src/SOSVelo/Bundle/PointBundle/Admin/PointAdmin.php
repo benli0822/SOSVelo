@@ -34,6 +34,8 @@ class PointAdmin extends Admin {
             ->add('rating')
             ->add('activated')
             ->add("services")
+            ->add("longitude")
+            ->add("latitude")
             ->add('user')
         ;
     }
@@ -54,6 +56,8 @@ class PointAdmin extends Admin {
             ->add('rating')
             ->add('activated')
             ->add("services")
+            ->add("longitude")
+            ->add("latitude")
             ->add('user')
 //            ->end()
 //            ->with('Tags')
@@ -82,6 +86,8 @@ class PointAdmin extends Admin {
             ->add('rating')
             ->add('activated')
             ->add("services")
+            ->add("longitude")
+            ->add("latitude")
             ->add('user')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -104,6 +110,8 @@ class PointAdmin extends Admin {
             ->add('name')
             ->add('address')
             ->add("services")
+            ->add("longitude")
+            ->add("latitude")
         ;
     }
 }

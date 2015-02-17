@@ -2,7 +2,7 @@
 parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
-    database_port: 3306
+    database_port: 8889
     database_name: SOSVelo
     database_user: root
     database_password: root
@@ -11,4 +11,5 @@ parameters:
     mailer_user: null
     mailer_password: null
     locale: fr
-    secret: 'Myobcrc莽脿!!脿ionjfrzzf-2茅茅'
+    # secret: 'Myobcrc莽脿!!脿ionjfrzzf-2茅茅
+    secret: 'asdsadas'
