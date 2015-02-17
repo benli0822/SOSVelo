@@ -293,7 +293,7 @@
                             <div id="tabs-2">
                                 <br/>
 
-                                <div class="loading">
+                                <div class="loading" id="loading-route">
                                     <div class="sk-spinner sk-spinner-wordpress">
                                         <span class="sk-inner-circle"></span>
                                     </div>
@@ -575,6 +575,8 @@
 
         //route
         function route(lat_1, lng_1, lat_2, lng_2) {
+
+            $('#loading-route').show();
             if (layer != null)
                 map.removeLayer(layer);
 
@@ -594,6 +596,7 @@
                                 html += maneuvers[i].narrative + '<br />';
                             }
 
+                            $('#loading-route').hide();
                             L.DomUtil.get('route-narrative').innerHTML = html;
                         }
                     });
